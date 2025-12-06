@@ -1,7 +1,8 @@
 'use client';
 
+import { Container } from '@/components/ui/Container';
 import { GitHubLogoIcon, HamburgerMenuIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
-import { Box, Button, Container, DropdownMenu, Flex, Text } from '@radix-ui/themes';
+import { Box, Button, DropdownMenu, Flex, Text } from '@radix-ui/themes';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -17,8 +18,8 @@ export function Navbar() {
 
   return (
     <Box style={{ borderBottom: '1px solid var(--gray-a4)', position: 'sticky', top: 0, zIndex: 10, backgroundColor: 'var(--color-background)', backdropFilter: 'blur(10px)' }}>
-      <Container size="3">
-        <Flex justify="between" align="center" py="4" px="4">
+      <Container>
+        <Flex justify="between" align="center" py="4">
           <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Text size="5" weight="bold" style={{ letterSpacing: '-0.02em' }}>
               Ghost.

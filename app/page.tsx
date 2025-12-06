@@ -1,7 +1,8 @@
 'use client';
 
+import { Container } from '@/components/ui/Container';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
-import { Box, Button, Card, Container, Flex, Grid, Heading, Inset, Text } from '@radix-ui/themes';
+import { Box, Button, Card, Flex, Grid, Heading, Inset, Text } from '@radix-ui/themes';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 

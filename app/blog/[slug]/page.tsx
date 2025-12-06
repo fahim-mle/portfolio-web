@@ -1,5 +1,6 @@
+import { Container } from '@/components/ui/Container';
 import { getAllPostIds, getPostData } from '@/lib/blog';
-import { Box, Container, Heading, Text } from '@radix-ui/themes';
+import { Box, Heading, Text } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
 
 // Return a list of `params` to populate the [slug] dynamic segment
@@ -17,7 +18,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
   }
 
   return (
-    <Container size="3" py="9">
+    <Container py="9">
       <Box mb="6">
         <Heading size="8" mb="2">{postData.title}</Heading>
         <Text size="3" color="gray">{postData.date}</Text>

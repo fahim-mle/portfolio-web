@@ -1,4 +1,5 @@
-import { Button, Container, Flex, Heading, Text, TextArea, TextField } from '@radix-ui/themes';
+import { Container } from '@/components/ui/Container';
+import { Button, Flex, Heading, Text, TextArea, TextField } from '@radix-ui/themes';
 
 export default function Contact() {
   return (

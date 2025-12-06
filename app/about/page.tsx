@@ -1,8 +1,9 @@
-import { Box, Container, Flex, Heading, Separator, Text } from '@radix-ui/themes';
+import { Container } from '@/components/ui/Container';
+import { Box, Flex, Heading, Separator, Text } from '@radix-ui/themes';
 
 export default function About() {
   return (
-    <Container size="3" py="9">
+    <Container py="9">
       <Flex direction="column" gap="6">
         <Heading size="8">About Me</Heading>
 
