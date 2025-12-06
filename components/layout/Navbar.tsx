@@ -1,10 +1,13 @@
 'use client';
 
 import { Container } from '@/components/ui/Container';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
 import { GitHubLogoIcon, HamburgerMenuIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
-import { Box, Button, DropdownMenu, Flex, Text } from '@radix-ui/themes';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
@@ -15,63 +18,80 @@ const NAV_ITEMS = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Box style={{ borderBottom: '1px solid var(--gray-a4)', position: 'sticky', top: 0, zIndex: 10, backgroundColor: 'var(--color-background)', backdropFilter: 'blur(10px)' }}>
-      <Container>
-        <Flex justify="between" align="center" py="4">
-          <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Text size="5" weight="bold" style={{ letterSpacing: '-0.02em' }}>
-              Ghost.
-            </Text>
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <Container className="flex h-14 max-w-screen-2xl items-center justify-between">
+        <div className="mr-4 hidden md:flex">
+          <Link href="/" className="mr-6 flex items-center space-x-2">
+            <span className="hidden font-bold sm:inline-block">Ghost.</span>
           </Link>
-
-          {/* Desktop Navigation */}
-          <Flex gap="5" display={{ initial: 'none', sm: 'flex' }}>
+          <nav className="flex items-center gap-6 text-sm">
             {NAV_ITEMS.map((item) => (
-              <Link key={item.href} href={item.href} style={{ textDecoration: 'none' }}>
-                <Text
-                  size="2"
-                  weight="medium"
-                  color={pathname === item.href ? 'indigo' : 'gray'}
-                  style={{ transition: 'color 0.2s' }}
-                >
-                  {item.label}
-                </Text>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "transition-colors hover:text-foreground/80",
+                  pathname === item.href ? "text-foreground" : "text-foreground/60"
+                )}
+              >
+                {item.label}
               </Link>
             ))}
-          </Flex>
+          </nav>
+        </div>
 
-          {/* Mobile Navigation */}
-          <Box display={{ initial: 'block', sm: 'none' }}>
-            <DropdownMenu.Root>
-              <DropdownMenu.Trigger>
-                <Button variant="ghost" color="gray">
-                  <HamburgerMenuIcon width="18" height="18" />
-                </Button>
-              </DropdownMenu.Trigger>
-              <DropdownMenu.Content>
+        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          <div className="w-full flex-1 md:w-auto md:flex-none">
+            {/* Search or other items could go here */}
+          </div>
+          <nav className="flex items-center gap-2">
+            <Link href="https://github.com" target="_blank" rel="noreferrer">
+              <Button variant="ghost" size="icon" className="h-8 w-8 px-0">
+                <GitHubLogoIcon className="h-4 w-4" />
+                <span className="sr-only">GitHub</span>
+              </Button>
+            </Link>
+            <Link href="https://linkedin.com" target="_blank" rel="noreferrer">
+              <Button variant="ghost" size="icon" className="h-8 w-8 px-0">
+                <LinkedInLogoIcon className="h-4 w-4" />
+                <span className="sr-only">LinkedIn</span>
+              </Button>
+            </Link>
+          </nav>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="flex items-center md:hidden ml-2">
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="h-8 w-8 px-0">
+                <HamburgerMenuIcon className="h-4 w-4" />
+                <span className="sr-only">Toggle Menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <div className="flex flex-col space-y-4 mt-4">
                 {NAV_ITEMS.map((item) => (
-                  <DropdownMenu.Item key={item.href} asChild>
-                    <Link href={item.href} style={{ textDecoration: 'none', color: 'inherit', width: '100%' }}>
-                      {item.label}
-                    </Link>
-                  </DropdownMenu.Item>
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "text-sm font-medium transition-colors hover:text-primary",
+                      pathname === item.href ? "text-foreground" : "text-foreground/60"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
                 ))}
-              </DropdownMenu.Content>
-            </DropdownMenu.Root>
-          </Box>
-
-          <Flex gap="3" align="center" display={{ initial: 'none', xs: 'flex' }}>
-            <Button variant="ghost" color="gray">
-              <GitHubLogoIcon width="18" height="18" />
-            </Button>
-            <Button variant="ghost" color="gray">
-              <LinkedInLogoIcon width="18" height="18" />
-            </Button>
-          </Flex>
-        </Flex>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </Container>
-    </Box>
+    </header>
   );
 }

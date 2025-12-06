@@ -1,25 +1,27 @@
 import { Container } from '@/components/ui/Container';
-import { Button, Flex, Heading, Text, TextArea, TextField } from '@radix-ui/themes';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function Contact() {
   return (
-    <Container size="2" py="9">
-      <Flex direction="column" gap="6">
-        <Heading size="8" align="center">Get in Touch</Heading>
-        <Text size="4" color="gray" align="center" as="p">
-          I'm currently looking for new opportunities, my inbox is always open.
-          Whether you have a question or just want to say hi, I'll try my best to get back to you!
-        </Text>
+    <Container className="py-24 max-w-md">
+      <div className="flex flex-col gap-6">
+        <div className="text-center space-y-2">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">Get in Touch</h1>
+          <p className="text-muted-foreground">
+            I'm currently looking for new opportunities, my inbox is always open.
+            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          </p>
+        </div>
 
-        <form style={{ width: '100%' }}>
-          <Flex direction="column" gap="4">
-            <TextField.Root placeholder="Name" size="3" />
-            <TextField.Root placeholder="Email" size="3" />
-            <TextArea placeholder="Message" size="3" style={{ minHeight: 150 }} />
-            <Button size="3" variant="solid" highContrast>Send Message</Button>
-          </Flex>
+        <form className="w-full space-y-4">
+          <Input placeholder="Name" />
+          <Input placeholder="Email" type="email" />
+          <Textarea placeholder="Message" className="min-h-[150px]" />
+          <Button className="w-full" size="lg">Send Message</Button>
         </form>
-      </Flex>
+      </div>
     </Container>
   );
 }

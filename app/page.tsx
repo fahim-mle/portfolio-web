@@ -1,8 +1,9 @@
 'use client';
 
 import { Container } from '@/components/ui/Container';
+import { Button } from '@/components/ui/button';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
-import { Box, Button, Card, Flex, Grid, Heading, Inset, Text } from '@radix-ui/themes';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -10,17 +11,17 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <Box py="9" style={{ backgroundColor: 'var(--gray-2)' }}>
-        <Container size="3">
-          <Flex direction="column" align="start" gap="5" style={{ maxWidth: 600 }}>
+      <section className="py-24 md:py-32 bg-muted/50">
+        <Container>
+          <div className="flex flex-col items-start gap-5 max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Heading size="9" weight="bold" mb="4">
+              <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">
                 Building digital experiences that matter.
-              </Heading>
+              </h1>
             </motion.div>
 
             <motion.div
@@ -28,10 +29,10 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Text size="5" color="gray" mb="6" as="p">
+              <p className="text-xl text-muted-foreground mb-6">
                 I'm a software engineer specializing in building exceptional digital experiences.
                 Currently focused on accessible, human-centered products.
-              </Text>
+              </p>
             </motion.div>
 
             <motion.div
@@ -39,48 +40,42 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Flex gap="4">
+              <div className="flex gap-4">
                 <Link href="/projects">
-                  <Button size="4" variant="solid" highContrast>
-                    View Work <ArrowRightIcon />
+                  <Button size="lg">
+                    View Work <ArrowRightIcon className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button size="4" variant="outline" color="gray">
+                  <Button size="lg" variant="outline">
                     Contact Me
                   </Button>
                 </Link>
-              </Flex>
+              </div>
             </motion.div>
-          </Flex>
+          </div>
         </Container>
-      </Box>
+      </section>
 
       {/* Featured Section */}
-      <Container size="3" py="9">
-        <Heading size="6" mb="5">Featured Projects</Heading>
-        <Grid columns={{ initial: '1', sm: '2' }} gap="5">
-          {[1, 2].map((i) => (
-            <Card key={i} size="2">
-              <Inset clip="padding-box" side="top" pb="current">
-                <Box
-                  style={{
-                    width: '100%',
-                    height: 200,
-                    backgroundColor: 'var(--gray-5)',
-                  }}
-                />
-              </Inset>
-              <Text as="p" size="3" weight="bold" mt="2">
-                Project Name {i}
-              </Text>
-              <Text as="p" size="2" color="gray" mt="1">
-                A brief description of the project and the technologies used to build it.
-              </Text>
-            </Card>
-          ))}
-        </Grid>
-      </Container>
+      <section className="py-24">
+        <Container>
+          <h2 className="text-3xl font-bold tracking-tight mb-8">Featured Projects</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[1, 2].map((i) => (
+              <Card key={i} className="overflow-hidden">
+                <div className="w-full h-48 bg-muted" />
+                <CardHeader>
+                  <CardTitle>Project Name {i}</CardTitle>
+                  <CardDescription>
+                    A brief description of the project and the technologies used to build it.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </section>
     </main>
   );
 }

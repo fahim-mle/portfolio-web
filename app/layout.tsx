@@ -1,7 +1,7 @@
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
-import { Box, Flex, Theme } from "@radix-ui/themes";
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "My Portfolio",
-  description: "Personal Portfolio Website",
+  description: "Personal portfolio website",
 };
 
 export default function RootLayout({
@@ -18,17 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Theme appearance="dark" accentColor="indigo" grayColor="slate" radius="medium">
-          <Flex direction="column" style={{ minHeight: '100vh' }}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <div className="relative flex min-h-screen flex-col">
             <Navbar />
-            <Box flexGrow="1">
-              {children}
-            </Box>
+            <main className="flex-1">{children}</main>
             <Footer />
-          </Flex>
-        </Theme>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

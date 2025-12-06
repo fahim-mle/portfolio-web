@@ -1,16 +1,13 @@
 import { Container } from '@/components/ui/Container';
-import { Box, Flex, Text } from '@radix-ui/themes';
 
 export function Footer() {
   return (
-    <Box py="6" style={{ borderTop: '1px solid var(--gray-a4)', marginTop: 'auto' }}>
-      <Container>
-        <Flex justify="center" align="center">
-          <Text size="2" color="gray">
-            © {new Date().getFullYear()} Ghost. All rights reserved.
-          </Text>
-        </Flex>
+    <footer className="border-t border-border/40 py-6 md:px-8 md:py-0">
+      <Container className="flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+        <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+          © {new Date().getFullYear()} Ghost. All rights reserved.
+        </p>
       </Container>
-    </Box>
+    </footer>
   );
 }
