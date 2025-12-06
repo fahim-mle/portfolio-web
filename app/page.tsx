@@ -1,66 +1,85 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import { ArrowRightIcon } from '@radix-ui/react-icons';
+import { Box, Button, Card, Container, Flex, Grid, Heading, Inset, Text } from '@radix-ui/themes';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+    <main>
+      {/* Hero Section */}
+      <Box py="9" style={{ backgroundColor: 'var(--gray-2)' }}>
+        <Container size="3">
+          <Flex direction="column" align="start" gap="5" style={{ maxWidth: 600 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+              <Heading size="9" weight="bold" mb="4">
+                Building digital experiences that matter.
+              </Heading>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              <Text size="5" color="gray" mb="6" as="p">
+                I'm a software engineer specializing in building exceptional digital experiences.
+                Currently focused on accessible, human-centered products.
+              </Text>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Flex gap="4">
+                <Link href="/projects">
+                  <Button size="4" variant="solid" highContrast>
+                    View Work <ArrowRightIcon />
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button size="4" variant="outline" color="gray">
+                    Contact Me
+                  </Button>
+                </Link>
+              </Flex>
+            </motion.div>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* Featured Section */}
+      <Container size="3" py="9">
+        <Heading size="6" mb="5">Featured Projects</Heading>
+        <Grid columns={{ initial: '1', sm: '2' }} gap="5">
+          {[1, 2].map((i) => (
+            <Card key={i} size="2">
+              <Inset clip="padding-box" side="top" pb="current">
+                <Box
+                  style={{
+                    width: '100%',
+                    height: 200,
+                    backgroundColor: 'var(--gray-5)',
+                  }}
+                />
+              </Inset>
+              <Text as="p" size="3" weight="bold" mt="2">
+                Project Name {i}
+              </Text>
+              <Text as="p" size="2" color="gray" mt="1">
+                A brief description of the project and the technologies used to build it.
+              </Text>
+            </Card>
+          ))}
+        </Grid>
+      </Container>
+    </main>
   );
 }
