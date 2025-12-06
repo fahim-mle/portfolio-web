@@ -17,8 +17,8 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
   }
 
   return (
-    <Container className="py-24 max-w-3xl">
-      <div className="mb-8">
+    <Container className="py-24 max-w-3xl mx-auto">
+      <div className="mb-8 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-2">{postData.title}</h1>
         <p className="text-xl text-muted-foreground">{postData.date}</p>
       </div>

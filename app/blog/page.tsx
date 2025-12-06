@@ -8,8 +8,8 @@ export default function BlogIndex() {
 
   return (
     <Container className="py-24">
-      <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-8">Blog</h1>
-      <div className="flex flex-col gap-4 max-w-3xl">
+      <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-8 text-center">Blog</h1>
+      <div className="flex flex-col gap-4 max-w-3xl mx-auto">
         {allPostsData.map(({ id, date, title, excerpt }) => (
           <Link key={id} href={`/blog/${id}`} className="no-underline">
             <Card className="hover:bg-muted/50 transition-colors">

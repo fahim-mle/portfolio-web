@@ -13,7 +13,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="py-24 md:py-32 bg-muted/50">
         <Container>
-          <div className="flex flex-col items-start gap-5 max-w-2xl">
+          <div className="flex flex-col items-center text-center gap-5 max-w-3xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <div className="flex gap-4">
+              <div className="flex gap-4 justify-center">
                 <Link href="/projects">
                   <Button size="lg">
                     View Work <ArrowRightIcon className="ml-2 h-4 w-4" />
@@ -60,7 +60,7 @@ export default function Home() {
       {/* Featured Section */}
       <section className="py-24">
         <Container>
-          <h2 className="text-3xl font-bold tracking-tight mb-8">Featured Projects</h2>
+          <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">Featured Projects</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[1, 2].map((i) => (
               <Card key={i} className="overflow-hidden">

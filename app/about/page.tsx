@@ -4,8 +4,8 @@ import { Separator } from '@/components/ui/separator';
 export default function About() {
   return (
     <Container className="py-24">
-      <div className="flex flex-col gap-6 max-w-2xl">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">About Me</h1>
+      <div className="flex flex-col gap-6 max-w-2xl mx-auto">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-center">About Me</h1>
 
         <div className="space-y-4">
           <p className="text-xl text-muted-foreground">
