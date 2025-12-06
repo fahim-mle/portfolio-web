@@ -1,7 +1,7 @@
 'use client';
 
-import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
-import { Box, Button, Container, Flex, Text } from '@radix-ui/themes';
+import { GitHubLogoIcon, HamburgerMenuIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
+import { Box, Button, Container, DropdownMenu, Flex, Text } from '@radix-ui/themes';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -25,6 +25,7 @@ export function Navbar() {
             </Text>
           </Link>
 
+          {/* Desktop Navigation */}
           <Flex gap="5" display={{ initial: 'none', sm: 'flex' }}>
             {NAV_ITEMS.map((item) => (
               <Link key={item.href} href={item.href} style={{ textDecoration: 'none' }}>
@@ -40,7 +41,27 @@ export function Navbar() {
             ))}
           </Flex>
 
-          <Flex gap="3" align="center">
+          {/* Mobile Navigation */}
+          <Box display={{ initial: 'block', sm: 'none' }}>
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger>
+                <Button variant="ghost" color="gray">
+                  <HamburgerMenuIcon width="18" height="18" />
+                </Button>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content>
+                {NAV_ITEMS.map((item) => (
+                  <DropdownMenu.Item key={item.href} asChild>
+                    <Link href={item.href} style={{ textDecoration: 'none', color: 'inherit', width: '100%' }}>
+                      {item.label}
+                    </Link>
+                  </DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+          </Box>
+
+          <Flex gap="3" align="center" display={{ initial: 'none', xs: 'flex' }}>
             <Button variant="ghost" color="gray">
               <GitHubLogoIcon width="18" height="18" />
             </Button>
