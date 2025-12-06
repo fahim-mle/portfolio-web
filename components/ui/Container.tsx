@@ -1,13 +1,13 @@
-import { ContainerProps, Container as RadixContainer } from '@radix-ui/themes';
+import { cn } from "@/lib/utils"
 
-interface Props extends ContainerProps {
-  children: React.ReactNode;
+interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode
 }
 
-export function Container({ children, ...props }: Props) {
+export function Container({ children, className, ...props }: ContainerProps) {
   return (
-    <RadixContainer size="3" px="4" {...props}>
+    <div className={cn("container mx-auto px-4", className)} {...props}>
       {children}
-    </RadixContainer>
-  );
+    </div>
+  )
 }
