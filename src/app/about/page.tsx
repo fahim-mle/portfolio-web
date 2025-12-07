@@ -1,4 +1,4 @@
-import { Container } from '@/components/ui/Container';
+import { Container } from '@/components/ui/container';
 import { Separator } from '@/components/ui/separator';
 
 export default function About() {

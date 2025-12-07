@@ -1,5 +1,5 @@
-import { Container } from '@/components/ui/Container';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Container } from '@/components/ui/container';
 import { getSortedPostsData } from '@/lib/blog';
 import Link from 'next/link';
 

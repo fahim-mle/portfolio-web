@@ -1,8 +1,8 @@
 'use client';
 
-import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Container } from '@/components/ui/container';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
 import Link from 'next/link';

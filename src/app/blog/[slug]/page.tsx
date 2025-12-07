@@ -1,4 +1,4 @@
-import { Container } from '@/components/ui/Container';
+import { Container } from '@/components/ui/container';
 import { getAllPostIds, getPostData } from '@/lib/blog';
 import { notFound } from 'next/navigation';
 
