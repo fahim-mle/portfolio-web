@@ -2,7 +2,7 @@
 
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { GitHubLogoIcon, HamburgerMenuIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
@@ -22,7 +22,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Container className="flex h-14 max-w-screen-2xl items-center justify-between">
+      <Container className="flex h-14 items-center justify-between">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <span className="hidden font-bold sm:inline-block">Ghost.</span>
@@ -73,6 +73,10 @@ export function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+              <SheetDescription className="sr-only">
+                Main navigation links for the portfolio website.
+              </SheetDescription>
               <div className="flex flex-col space-y-4 mt-4">
                 {NAV_ITEMS.map((item) => (
                   <Link
