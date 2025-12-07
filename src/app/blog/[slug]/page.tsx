@@ -1,6 +1,5 @@
-import { Container } from '@/components/ui/Container';
+import { Container } from '@/components/ui/container';
 import { getAllPostIds, getPostData } from '@/lib/blog';
-import { Box, Heading, Text } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
 
 // Return a list of `params` to populate the [slug] dynamic segment
@@ -18,16 +17,15 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
   }
 
   return (
-    <Container py="9">
-      <Box mb="6">
-        <Heading size="8" mb="2">{postData.title}</Heading>
-        <Text size="3" color="gray">{postData.date}</Text>
-      </Box>
+    <Container className="py-24 max-w-3xl mx-auto">
+      <div className="mb-8 text-center">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-2">{postData.title}</h1>
+        <p className="text-xl text-muted-foreground">{postData.date}</p>
+      </div>
 
-      <Box
-        className="prose prose-invert"
+      <article
+        className="prose prose-invert max-w-none"
         dangerouslySetInnerHTML={{ __html: postData.contentHtml || '' }}
-        style={{ maxWidth: 'none', color: 'var(--gray-12)' }}
       />
     </Container>
   );
