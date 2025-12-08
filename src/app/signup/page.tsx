@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { signIn } from "next-auth/react";
+import { signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -17,34 +17,19 @@ export default function SignupPage() {
     e.preventDefault();
     setError("");
 
-    try {
-      const res = await fetch("/api/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Something went wrong");
-      }
-
-      const loginResult = await signIn("credentials", {
+    await signUp.email({
         email,
         password,
-        redirect: false,
+        name: "User", // Default name as required by schema
+      }, {
+        onSuccess: () => {
+          router.push("/");
+          router.refresh();
+        },
+        onError: (ctx: any) => {
+          setError(ctx.error.message);
+        }
       });
-
-      if (loginResult?.error) {
-        router.push("/login");
-      } else {
-        router.push("/");
-        router.refresh();
-      }
-
-    } catch (err: any) {
-      setError(err.message);
-    }
   };
 
   return (

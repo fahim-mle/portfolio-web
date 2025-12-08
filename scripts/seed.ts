@@ -14,7 +14,8 @@ async function main() {
     update: {},
     create: {
       email: 'test@example.com',
-      password: 'password123',
+      password: process.env.SEED_PASSWORD!,
+      name: 'Test User',
     },
   });
   console.log('Seeded user:', user);
