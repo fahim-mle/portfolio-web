@@ -5,6 +5,7 @@ import { Container } from '@/components/ui/container';
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { GitHubLogoIcon, HamburgerMenuIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -48,6 +49,7 @@ export function Navbar() {
             {/* Search or other items could go here */}
           </div>
           <nav className="flex items-center gap-2">
+            <AuthButtons />
             <Link href="https://github.com" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon" className="h-8 w-8 px-0">
                 <GitHubLogoIcon className="h-4 w-4" />
@@ -97,5 +99,37 @@ export function Navbar() {
         </div>
       </Container>
     </header>
+  );
+}
+
+function AuthButtons() {
+  const { data: session } = useSession();
+
+  if (session) {
+    return (
+      <div className="flex items-center gap-2 mr-2">
+        <span className="text-sm text-muted-foreground hidden md:inline-block">
+          {session.user?.email}
+        </span>
+        <Button variant="ghost" size="sm" onClick={() => signOut()}>
+          Sign Out
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2 mr-2">
+      <Link href="/login">
+        <Button variant="ghost" size="sm">
+          Login
+        </Button>
+      </Link>
+      <Link href="/signup">
+        <Button size="sm">
+          Sign Up
+        </Button>
+      </Link>
+    </div>
   );
 }
