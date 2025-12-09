@@ -3,9 +3,9 @@
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { signOut, useSession } from '@/lib/auth-client';
 import { cn } from '@/lib/utils';
 import { GitHubLogoIcon, HamburgerMenuIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
-import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';

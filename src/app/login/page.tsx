@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { signIn } from "next-auth/react";
+import { signIn } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -17,18 +17,18 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
 
-    const result = await signIn("credentials", {
+      await signIn.email({
         email,
         password,
-        redirect: false,
-    });
-
-    if (result?.error) {
-        setError("Invalid credentials");
-    } else {
-        router.push("/");
-        router.refresh();
-    }
+      }, {
+        onSuccess: () => {
+          router.push("/");
+          router.refresh();
+        },
+        onError: (ctx: any) => {
+          setError(ctx.error.message);
+        }
+      });
   };
 
   return (

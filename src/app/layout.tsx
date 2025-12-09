@@ -1,4 +1,4 @@
-import { AuthProvider } from "@/components/providers/session-provider";
+
 import { Footer } from "@/components/sections/footer";
 import { Navbar } from "@/components/sections/navbar";
 import type { Metadata } from "next";
@@ -21,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`} suppressHydrationWarning>
-        <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
             <div className="relative flex min-h-screen flex-col">
               <Navbar />
@@ -29,7 +28,6 @@ export default function RootLayout({
               <Footer />
             </div>
           </ThemeProvider>
-        </AuthProvider>
       </body>
     </html>
   );

@@ -14,7 +14,7 @@ async function main() {
     update: {},
     create: {
       email: 'test@example.com',
-      password: 'password123',
+      name: 'Test User',
     },
   });
   console.log('Seeded user:', user);
