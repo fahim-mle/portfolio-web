@@ -2,40 +2,115 @@
 
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
-import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { signOut, useSession } from '@/lib/auth-client';
 import { cn } from '@/lib/utils';
-import { GitHubLogoIcon, HamburgerMenuIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
+import { Cross1Icon, GitHubLogoIcon, HamburgerMenuIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Projects', href: '/projects' }, // Added Projects link
   { label: 'Contact', href: '/contact' },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Container className="flex h-14 items-center justify-between">
-        <div className="mr-4 hidden md:flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block">Ghost.</span>
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300 border-b border-transparent",
+        scrolled ? "bg-background/80 backdrop-blur-md border-border/50" : "bg-transparent"
+      )}
+    >
+      <Container className="flex h-16 items-center justify-between">
+        {/* Logo */}
+        <div className="mr-8 hidden md:flex">
+          <Link href="/" className="flex items-center space-x-2">
+            <span className="font-serif font-bold text-lg tracking-tight">Ghost.</span>
           </Link>
-          <nav className="flex items-center gap-6 text-sm">
+        </div>
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-8">
+          <nav className="flex items-center gap-8 text-sm font-medium">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "transition-colors hover:text-foreground/80",
-                  pathname === item.href ? "text-foreground" : "text-foreground/60"
+                  "relative py-1 transition-colors hover:text-accent group",
+                  pathname === item.href ? "text-foreground" : "text-muted-foreground"
+                )}
+              >
+                {item.label}
+                <span
+                  className={cn(
+                    "absolute left-0 bottom-0 h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-full",
+                    pathname === item.href ? "w-full" : "w-0"
+                  )}
+                />
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="flex flex-1 items-center justify-end space-x-4">
+          <nav className="flex items-center gap-2">
+            <AuthButtons />
+            <div className="h-4 w-[1px] bg-border mx-2 hidden md:block" />
+
+            <Link href="https://github.com" target="_blank" rel="noreferrer">
+              <Button variant="ghost" size="icon" className="h-8 w-8 px-0 text-muted-foreground hover:text-foreground">
+                <GitHubLogoIcon className="h-4 w-4" />
+                <span className="sr-only">GitHub</span>
+              </Button>
+            </Link>
+            <Link href="https://linkedin.com" target="_blank" rel="noreferrer">
+              <Button variant="ghost" size="icon" className="h-8 w-8 px-0 text-muted-foreground hover:text-foreground">
+                <LinkedInLogoIcon className="h-4 w-4" />
+                <span className="sr-only">LinkedIn</span>
+              </Button>
+            </Link>
+          </nav>
+
+          {/* Mobile Menu Toggle */}
+          <div className="flex items-center md:hidden ml-2">
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="text-foreground">
+              {isOpen ? <Cross1Icon className="h-5 w-5" /> : <HamburgerMenuIcon className="h-5 w-5" />}
+              <span className="sr-only">Toggle Menu</span>
+            </Button>
+          </div>
+        </div>
+      </Container>
+
+
+      {/* Mobile Menu Overlay */}
+      {isOpen && (
+        <div className="absolute top-16 left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border shadow-2xl p-6 flex flex-col gap-6 md:hidden animate-in slide-in-from-top-2 fade-in">
+          <nav className="flex flex-col gap-4">
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className={cn(
+                  "text-lg font-medium transition-colors hover:text-accent",
+                  pathname === item.href ? "text-accent" : "text-muted-foreground"
                 )}
               >
                 {item.label}
@@ -43,61 +118,7 @@ export function Navbar() {
             ))}
           </nav>
         </div>
-
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            {/* Search or other items could go here */}
-          </div>
-          <nav className="flex items-center gap-2">
-            <AuthButtons />
-            <Link href="https://github.com" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="h-8 w-8 px-0">
-                <GitHubLogoIcon className="h-4 w-4" />
-                <span className="sr-only">GitHub</span>
-              </Button>
-            </Link>
-            <Link href="https://linkedin.com" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="h-8 w-8 px-0">
-                <LinkedInLogoIcon className="h-4 w-4" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
-            </Link>
-          </nav>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className="flex items-center md:hidden ml-2">
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8 px-0">
-                <HamburgerMenuIcon className="h-4 w-4" />
-                <span className="sr-only">Toggle Menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-              <SheetDescription className="sr-only">
-                Main navigation links for the portfolio website.
-              </SheetDescription>
-              <div className="flex flex-col space-y-4 mt-4">
-                {NAV_ITEMS.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "text-sm font-medium transition-colors hover:text-primary",
-                      pathname === item.href ? "text-foreground" : "text-foreground/60"
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </Container>
+      )}
     </header>
   );
 }
@@ -107,11 +128,11 @@ function AuthButtons() {
 
   if (session) {
     return (
-      <div className="flex items-center gap-2 mr-2">
-        <span className="text-sm text-muted-foreground hidden md:inline-block">
+      <div className="flex items-center gap-4">
+        <span className="text-xs text-muted-foreground hidden lg:inline-block font-mono">
           {session.user?.email}
         </span>
-        <Button variant="ghost" size="sm" onClick={() => signOut()}>
+        <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-xs h-8">
           Sign Out
         </Button>
       </div>
@@ -119,14 +140,14 @@ function AuthButtons() {
   }
 
   return (
-    <div className="flex items-center gap-2 mr-2">
+    <div className="flex items-center gap-2">
       <Link href="/login">
-        <Button variant="ghost" size="sm">
+        <Button variant="ghost" size="sm" className="text-xs h-8">
           Login
         </Button>
       </Link>
       <Link href="/signup">
-        <Button size="sm">
+        <Button size="sm" variant="outline" className="text-xs h-8 border-accent/20 hover:border-accent hover:bg-accent/10">
           Sign Up
         </Button>
       </Link>
