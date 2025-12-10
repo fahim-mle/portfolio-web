@@ -1,32 +1,44 @@
 import { Container } from '@/components/ui/container';
-import { Separator } from '@/components/ui/separator';
 
 export default function About() {
   return (
-    <Container className="py-24">
-      <div className="flex flex-col gap-6 max-w-2xl mx-auto">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-center">About Me</h1>
+    <Container className="py-24 md:py-32">
+      <div className="flex flex-col gap-12 max-w-2xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight">About</h1>
 
-        <div className="space-y-4">
-          <p className="text-xl text-muted-foreground">
-            Hello! I'm Ghost, a software engineer based in the cloud. I enjoy creating things that live on the internet.
-            My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — turns out hacking together HTML & CSS is pretty fun!
+        <div className="space-y-8 text-lg md:text-xl text-muted-foreground leading-relaxed font-sans font-light">
+          <p>
+            I exist at the intersection of <span className="text-foreground font-medium">curiosity and code</span>.
           </p>
-
-          <p className="text-xl text-muted-foreground">
-            Fast-forward to today, and I've had the privilege of working at an advertising agency, a start-up, a huge corporation, and a student-led design studio.
+          <p>
+            My work is driven by a desire to understand systems—whether they are digital architectures, biological patterns, or social structures.
+            I build software not just to solve problems, but to ask better questions.
+          </p>
+          <p>
+            Current focus: Data visualization, distributed systems, and the quiet beauty of functional programming.
           </p>
         </div>
 
-        <Separator className="my-4" />
-
-        <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
-        <div className="flex flex-wrap gap-4">
-          {['JavaScript (ES6+)', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Radix UI', 'Tailwind CSS'].map((skill) => (
-            <div key={skill} className="px-3 py-1 border rounded-md bg-muted/50 text-sm font-medium">
-              {skill}
-            </div>
-          ))}
+        <div className="pt-8">
+          <h2 className="text-xl font-medium text-foreground mb-4">Core Principles</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <li className="flex items-center gap-2 text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              Simplicity over ease
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent text-accent" />
+              Data as truth
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              Systems thinking
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              Continuous iteration
+            </li>
+          </ul>
         </div>
       </div>
     </Container>
