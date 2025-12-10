@@ -1,7 +1,8 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
-import rehypeSanitize from 'rehype-sanitize';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import rehypeStringify from 'rehype-stringify';
 import { remark } from 'remark';
 import remarkRehype from 'remark-rehype';
@@ -67,7 +68,16 @@ export async function getPostData(id: string): Promise<PostData> {
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(remarkRehype)
-    .use(rehypeSanitize)
+    .use(rehypeHighlight)
+    .use(rehypeSanitize, {
+      ...defaultSchema,
+      tagNames: [...(defaultSchema.tagNames || []), 'span'],
+      attributes: {
+        ...defaultSchema.attributes,
+        code: [...(defaultSchema.attributes?.code || []), ['className']],
+        span: [...(defaultSchema.attributes?.span || []), ['className']],
+      },
+    })
     .use(rehypeStringify)
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
