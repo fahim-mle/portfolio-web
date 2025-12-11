@@ -2,7 +2,7 @@ import { Container } from '@/components/ui/container';
 import { auth } from '@/lib/better-auth';
 import { getAllPostIds, getPostData } from '@/lib/blog';
 import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {

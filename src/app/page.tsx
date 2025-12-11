@@ -1,81 +1,44 @@
-'use client';
-
 import { Button } from '@/components/ui/button';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
-import { ArrowRightIcon } from '@radix-ui/react-icons';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main>
-      {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-muted/50">
-        <Container>
-          <div className="flex flex-col items-center text-center gap-5 max-w-3xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">
-                Building digital experiences that matter.
-              </h1>
-            </motion.div>
+    <div className="flex flex-col min-h-[calc(100vh-4rem)] justify-center">
+      <Container>
+        <div className="flex flex-col gap-8 max-w-2xl py-24 md:py-32">
+          {/* Abstract / Intro */}
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-6xl font-serif font-medium tracking-tight leading-[1.1]">
+              <span className="text-muted-foreground mr-2">Creating with</span>
+              <span className="text-foreground">data, systems, and meaning.</span>
+            </h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <p className="text-xl text-muted-foreground mb-6">
-                I'm a software engineer specializing in building exceptional digital experiences.
-                Currently focused on accessible, human-centered products.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="flex gap-4 justify-center">
-                <Link href="/projects">
-                  <Button size="lg">
-                    View Work <ArrowRightIcon className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button size="lg" variant="outline">
-                    Contact Me
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
+              I’m a software engineer and thinker exploring the intersection of technology and human experience.
+              My work is a continuous experiment in curiosity.
+            </p>
           </div>
-        </Container>
-      </section>
 
-      {/* Featured Section */}
-      <section className="py-24">
-        <Container>
-          <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">Featured Projects</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {[1, 2].map((i) => (
-              <Card key={i} className="overflow-hidden">
-                <div className="w-full h-48 bg-muted" />
-                <CardHeader>
-                  <CardTitle>Project Name {i}</CardTitle>
-                  <CardDescription>
-                    A brief description of the project and the technologies used to build it.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
+          <div className="flex flex-wrap gap-4 pt-4">
+            <Link href="/projects">
+              <Button size="lg" className="h-12 px-8 text-base shadow-lg shadow-accent/5 hover:shadow-accent/20 transition-all duration-500">
+                View Projects
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button variant="outline" size="lg" className="h-12 px-8 text-base">
+                More About Me
+              </Button>
+            </Link>
           </div>
-        </Container>
-      </section>
-    </main>
+        </div>
+
+        {/* Decorational element (Abstract Visual) */}
+        <div className="absolute right-0 top-1/4 -z-10 opacity-20 hidden lg:block overflow-hidden pointer-events-none">
+           <div className="w-[600px] h-[600px] bg-accent/20 rounded-full blur-[100px] animate-pulse" />
+        </div>
+      </Container>
+    </div>
   );
 }
