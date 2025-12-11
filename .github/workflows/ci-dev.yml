@@ -1,0 +1,44 @@
+name: DEV CI Pipeline
+
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
+
+jobs:
+  build-and-lint:
+    name: Build and Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        # npm ci is faster and more reliable for CI; it also runs postinstall (prisma generate)
+        run: npm ci
+
+      - name: Lint Code
+        run: npm run lint
+
+      # Test step skipped as no test script exists in package.json yet.
+      # - name: Run Tests
+      #   run: npm test
+
+      - name: Build Application
+        run: npm run build
+
+      # Future CD / Deployment Placeholder
+      # This step will only run on 'main' branch in the future production workflow.
+      # - name: Deploy to AWS (Placeholder)
+      #   if: github.ref == 'refs/heads/main'
+      #   run: |
+      #     echo "Deploying to AWS..."
+      #     # Add AWS deployment commands here (e.g. AWS CLI, SST, Vercel CLI)
