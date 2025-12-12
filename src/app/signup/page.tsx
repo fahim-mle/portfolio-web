@@ -26,7 +26,7 @@ export default function SignupPage() {
           router.push("/");
           router.refresh();
         },
-        onError: (ctx: any) => {
+        onError: (ctx: { error: { message: string } }) => {
           setError(ctx.error.message);
         }
       });
