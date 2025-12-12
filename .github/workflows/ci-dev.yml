@@ -24,6 +24,8 @@ jobs:
       - name: Install Dependencies
         # npm ci is faster and more reliable for CI; it also runs postinstall (prisma generate)
         run: npm ci
+        env:
+          DATABASE_URL: "postgresql://user:pass@localhost:5432/db"
 
       - name: Lint Code
         run: npm run lint
