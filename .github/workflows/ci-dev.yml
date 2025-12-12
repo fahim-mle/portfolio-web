@@ -26,6 +26,7 @@ jobs:
         run: npm ci
         env:
           DATABASE_URL: "postgresql://user:pass@localhost:5432/db"
+          BETTER_AUTH_SECRET: "ci-secret-placeholder-must-be-32-chars-long"
 
       - name: Lint Code
         run: npm run lint
