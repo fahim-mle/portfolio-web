@@ -25,7 +25,7 @@ export default function LoginPage() {
           router.push("/");
           router.refresh();
         },
-        onError: (ctx: any) => {
+        onError: (ctx: { error: { message: string } }) => {
           setError(ctx.error.message);
         }
       });
@@ -64,10 +64,10 @@ export default function LoginPage() {
           </form>
         </CardContent>
         <CardFooter className="justify-center">
-            <p className="text-sm text-muted-foreground">
-                Don't have an account? <a href="/signup" className="underline">Sign up</a>
-            </p>
-        </CardFooter>
+            <p className="text-muted-foreground">
+            I&apos;m currently looking for new opportunities, my inbox is always open.
+            Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
+          </p></CardFooter>
       </Card>
     </div>
   );
