@@ -52,7 +52,13 @@ Host the application locally using Docker.
 
 2. Start the services:
    ```bash
-   docker compose up --build
+   docker compose up -d --build
+   ```
+
+3. Initialize the database (first time only):
+   ```bash
+   # Run from host machine (targeting port 5433)
+   DATABASE_URL="postgresql://user:pass@localhost:5433/db" npx prisma migrate deploy
    ```
 
 The application will be available at [http://localhost:3000](http://localhost:3000).
