@@ -25,6 +25,7 @@ COPY . .
 # If Prisma generate requires DATABASE_URL, strict mode might fail.
 # However, usually generate works for client generation without DB unless introspection is used.
 # Since we have custom output, we ensure it's generated.
+ENV DATABASE_URL="postgresql://dummy:5432/dummy"
 RUN npx prisma generate
 
 RUN npm run build
