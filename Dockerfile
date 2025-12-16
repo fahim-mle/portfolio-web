@@ -9,7 +9,7 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* ./
 COPY prisma ./prisma
-RUN npm ci
+RUN npm install
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -59,7 +59,7 @@ USER root
 
 # Manually install the Prisma CLI (because Standalone mode deleted it)
 # We also install OpenSSL because Prisma needs it on Alpine Linux
-RUN apk add --no-cache openssl && npm install prisma@7.1.0
+RUN apk add --no-cache openssl && npm install prisma@7.1.0 --legacy-peer-deps
 
 USER nextjs
 
