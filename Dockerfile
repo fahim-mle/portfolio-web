@@ -59,7 +59,7 @@ USER root
 
 # Manually install the Prisma CLI (because Standalone mode deleted it)
 # We also install OpenSSL because Prisma needs it on Alpine Linux
-RUN apk add --no-cache openssl && npm install prisma@7.1.0 --legacy-peer-deps
+RUN apk add --no-cache openssl && npm install prisma@7.1.0 dotenv@16.4.7 --legacy-peer-deps
 
 USER nextjs
 
