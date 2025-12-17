@@ -54,13 +54,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # CRITICAL: Copy custom Prisma Client
 COPY --from=builder --chown=nextjs:nodejs /app/src/generated /app/src/generated
 
-# Switch to root so we have permission to install
-USER root
-
-# Manually install the Prisma CLI (because Standalone mode deleted it)
-# We also install OpenSSL because Prisma needs it on Alpine Linux
-RUN apk add --no-cache openssl && npm install prisma@7.1.0 dotenv@16.4.7 --legacy-peer-deps
-
 USER nextjs
 
 EXPOSE 3000
