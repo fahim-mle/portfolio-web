@@ -9,6 +9,7 @@ on:
 jobs:
   build-and-lint:
     name: Build and Lint
+    environment: dev
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +27,7 @@ jobs:
         run: npm ci
         env:
           DATABASE_URL: "postgresql://user:pass@localhost:5432/db"
-          BETTER_AUTH_SECRET: "ci-secret-placeholder-must-be-32-chars-long"
+          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
 
       - name: Lint Code
         run: npm run lint
