@@ -37,6 +37,10 @@ jobs:
 
       - name: Build Application
         run: npm run build
+        env:
+          DATABASE_URL: "postgresql://user:pass@localhost:5432/db" # Dummy URL for build
+          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL: "http://localhost:3000" # Build time URL
 
       # Future CD / Deployment Placeholder
       # This step will only run on 'main' branch in the future production workflow.
