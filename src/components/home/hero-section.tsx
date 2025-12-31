@@ -2,7 +2,7 @@
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { Code2, Database, Github, Linkedin, Terminal } from 'lucide-react';
+import { ChevronDown, Code2, Database, Github, Linkedin, Terminal } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 export const HeroSection = () => {
