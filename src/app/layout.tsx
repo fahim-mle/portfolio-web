@@ -28,18 +28,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${ibmPlexSerif.variable} min-h-screen bg-background text-foreground antialiased font-sans selection:bg-accent selection:text-accent-foreground`} suppressHydrationWarning>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            {/* Background Image with Glow Effect */}
-            <div className="fixed inset-0 z-[-1]">
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-glow"
-                style={{
-                  backgroundImage: `url('/midnight-forest.png')`,
-                }}
-              />
-              {/* Overlay for better text readability */}
-              <div className="absolute inset-0 bg-background/80" />
-            </div>
-
             <div className="relative flex min-h-screen flex-col">
               <Navbar />
               <main className="flex-1">{children}</main>

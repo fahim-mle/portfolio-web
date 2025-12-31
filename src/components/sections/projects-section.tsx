@@ -58,7 +58,7 @@ export function ProjectsSection() {
   }, { scope: containerRef });
 
   return (
-    <section id="projects" className="flex items-center bg-[#0a0a0a] relative z-10 py-12 md:py-24" ref={containerRef}>
+    <section id="projects" className="flex items-center min-h-[50vh] relative z-10 py-12 md:py-24" ref={containerRef}>
       <Container className="py-12 md:py-24">
         <div className="flex flex-col gap-12">
           <div className="max-w-xl">
@@ -70,7 +70,7 @@ export function ProjectsSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROJECTS.map((project, index) => (
-              <div key={project.title} className="h-64 animate-card">
+              <div key={project.title} className="animate-card h-full">
                   <ProjectCard {...project} />
               </div>
             ))}
