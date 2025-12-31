@@ -79,3 +79,14 @@
     cursor: auto;
   }
 }
+
+@layer base {
+    /* Hide cursor on interactive elements to prevent double cursor,
+       but keep it on inputs so native text cursor (I-beam) works */
+    a, button, [role="button"] {
+        cursor: none;
+    }
+    input, textarea, [contenteditable="true"] {
+        cursor: text;
+    }
+}

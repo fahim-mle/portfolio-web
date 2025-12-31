@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface ProjectCardProps {
   title: string;
@@ -22,38 +23,33 @@ export function ProjectCard({ title, description, tags, href, icon }: ProjectCar
 
       {/* Content */}
       <div className="relative z-10 flex flex-col h-full">
-        <div className="mb-4 flex items-center justify-between">
-            {icon ? (
-                <div className="text-accent">{icon}</div>
-            ) : (
-                <div className="h-8 w-8 rounded-full bg-accent/10 text-accent flex items-center justify-center">
-                    {/* Placeholder Icon */}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-                </div>
-            )}
+    <Card className="flex flex-col h-full bg-transparent border-white/10 hover:border-[#D4AF37]/50 transition-colors duration-300 group">
+      <CardHeader>
+        <div className="mb-4 text-[#D4AF37] opacity-80 group-hover:opacity-100 transition-opacity">
+          {icon}
         </div>
-
-        <h3 className="mb-2 text-xl font-semibold font-serif tracking-tight text-foreground group-hover:text-accent transition-colors">
-          {title}
-        </h3>
-
-        <p className="mb-4 text-sm text-muted-foreground leading-relaxed flex-grow">
-          {description}
-        </p>
-
-        {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-auto">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center rounded-sm bg-secondary px-2 py-1 text-xs font-medium text-secondary-foreground"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-    </Link>
+        <CardTitle className="text-xl font-serif tracking-wide text-white group-hover:text-[#D4AF37] transition-colors">{title}</CardTitle>
+        <CardDescription className="text-sm font-sans text-gray-400 group-hover:text-gray-300 transition-colors">{description}</CardDescription>
+      </CardHeader>
+      <CardContent className="mt-auto">
+        <div className="flex flex-wrap gap-2 mb-6">
+          {tags.map((tag) => (
+            <span key={tag} className="text-[10px] uppercase tracking-wider text-gray-500 border border-gray-800 px-2 py-1 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </CardContent>
+      <CardFooter className="pt-0">
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] hover:text-white transition-colors flex items-center gap-2"
+        >
+            View Project <span className="text-lg leading-none">&rarr;</span>
+        </a>
+      </CardFooter>
+    </Card>
   );
 }
