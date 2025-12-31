@@ -28,13 +28,23 @@ export const HeroSection = () => {
     transform: `translate(${-(mousePos.x - window.innerWidth/2) * 0.03}px, ${-(mousePos.y - window.innerHeight/2) * 0.03}px)`
   } : {};
 
+    // Scroll indicator opacity logic
+    const [scrollOpacity, setScrollOpacity] = useState(1);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollOpacity(Math.max(0, 1 - window.scrollY / 300));
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
   useGSAP(() => {
     const tl = gsap.timeline();
 
     // Reset initial states
     gsap.set('.reveal-text', { y: 100, opacity: 0 });
     gsap.set('.line-separator', { scaleX: 0 });
-    gsap.set('.nav-item', { y: -20, opacity: 0 });
     gsap.set('.hero-tag', { opacity: 0, x: -20 });
 
     // Animation Sequence
@@ -52,13 +62,7 @@ export const HeroSection = () => {
         duration: 0.8,
         stagger: 0.1,
         ease: 'power2.out'
-      }, '-=0.8')
-      .to('.nav-item', {
-        y: 0,
-        opacity: 1,
-        stagger: 0.1,
-        ease: 'back.out(1.7)'
-      }, '-=1');
+      }, '-=0.8');
   }, { scope: containerRef });
 
   return (
@@ -117,7 +121,7 @@ export const HeroSection = () => {
       {/* Scroll Indicator */}
       <div
         className="fixed bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce transition-opacity duration-300 pointer-events-none z-50"
-        style={{ opacity: Math.max(0, 1 - (typeof window !== 'undefined' ? window.scrollY : 0) / 300) }}
+        style={{ opacity: scrollOpacity }}
       >
         <span className="text-[10px] uppercase tracking-widest font-sans text-white/50">Scroll</span>
         <ChevronDown size={16} className="text-white/50" />
