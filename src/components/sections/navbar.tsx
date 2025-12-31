@@ -10,30 +10,53 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const NAV_ITEMS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Projects', href: '/projects' }, // Added Projects link
-  { label: 'Contact', href: '/contact' },
+  { label: 'Home', href: '#' },
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Simple section detection
+      const sections = ['about', 'projects', 'contact'];
+      let current = '';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= (element.offsetTop - 100)) {
+          current = '#' + section;
+        }
+      }
+      if (window.scrollY < 100) current = '#';
+      setActiveSection(current);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    if (targetId === '') {
+       window.scrollTo({ top: 0, behavior: 'smooth' });
+       return;
+    }
+    const elem = document.getElementById(targetId);
+    elem?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 border-b border-transparent",
+        "fixed top-0 z-50 w-full transition-all duration-300 border-b border-transparent",
         scrolled ? "bg-background/80 backdrop-blur-md border-border/50" : "bg-transparent"
       )}
     >
@@ -41,7 +64,7 @@ export function Navbar() {
         {/* Logo */}
         <div className="mr-8 hidden md:flex">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="font-serif font-bold text-lg tracking-tight">Ghost.</span>
+            <span className="font-serif font-bold text-lg tracking-tight text-[#D4AF37]">Ghost.</span>
           </Link>
         </div>
 
@@ -49,22 +72,23 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           <nav className="flex items-center gap-8 text-sm font-medium">
             {NAV_ITEMS.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
+                onClick={(e) => scrollToSection(e, item.href)}
                 className={cn(
-                  "relative py-1 transition-colors hover:text-accent group",
-                  pathname === item.href ? "text-foreground" : "text-muted-foreground"
+                  "relative py-1 transition-colors hover:text-[#D4AF37] group uppercase tracking-widest text-xs",
+                  activeSection === item.href ? "text-[#D4AF37]" : "text-muted-foreground"
                 )}
               >
                 {item.label}
                 <span
                   className={cn(
-                    "absolute left-0 bottom-0 h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-full",
-                    pathname === item.href ? "w-full" : "w-0"
+                    "absolute left-0 bottom-0 h-[1px] w-0 bg-[#D4AF37] transition-all duration-300 group-hover:w-full",
+                    activeSection === item.href ? "w-full" : "w-0"
                   )}
                 />
-              </Link>
+              </a>
             ))}
           </nav>
         </div>

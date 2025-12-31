@@ -2,39 +2,14 @@
 
 @theme {
   /* Fonts */
-  --font-serif: var(--font-ibm-plex-serif);
-  --font-sans: var(--font-inter);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 
   /* Colors */
-  --color-background: #0A0A0C;
-  --color-foreground: #F1F1F1;
+  --color-background: #0a0a0a;
+  --color-foreground: #ffffff;
 
-  --color-card: #111114;
-  --color-card-foreground: #F1F1F1;
-
-  --color-popover: #111114;
-  --color-popover-foreground: #F1F1F1;
-
-  --color-primary: #F1F1F1;
-  --color-primary-foreground: #0A0A0C;
-  --color-secondary: #111114;
-  --color-secondary-foreground: #A7A7AA;
-
-  --color-muted: #1A1A1D;
-  --color-muted-foreground: #71717A;
-
-  --color-accent: #ff9300;
-  --color-accent-foreground: #000000;
-  /* accent-secondary/tertiary not standard in this block unless named specifically */
-
-  --color-destructive: #EF4444;
-  --color-destructive-foreground: #F1F1F1;
-
-  --color-border: #2A2A2E;
-  --color-input: #2A2A2E;
-  --color-ring: #00E5FF;
-
-  --radius: 0.5rem;
+  --color-gold: #D4AF37;
 }
 
 /* Custom Utilities if needed */
@@ -46,14 +21,52 @@
 
 /* Base styles */
 @layer base {
-  body {
-    /* Background noise */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-    background-attachment: fixed;
+  html, body {
+    scroll-behavior: smooth;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
-    letter-spacing: -0.025em;
+  body {
+    cursor: none; /* Hide default cursor for custom one */
+  }
+
+  ::selection {
+    background-color: #D4AF37;
+    color: #000000;
+  }
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.custom-cursor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background-color: #D4AF37;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+  body {
+    cursor: auto;
   }
 }
