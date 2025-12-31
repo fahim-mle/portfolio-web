@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { signOut, useSession } from '@/lib/auth-client';
 import { cn } from '@/lib/utils';
-import { Cross1Icon, GitHubLogoIcon, HamburgerMenuIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
+import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { label: 'Home', href: '#' },
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -43,6 +44,8 @@ export function Navbar() {
   }, []);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith('#')) return; // Allow normal navigation for external links
+
     e.preventDefault();
     const targetId = href.replace('#', '');
     if (targetId === '') {
@@ -96,20 +99,6 @@ export function Navbar() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center gap-2">
             <AuthButtons />
-            <div className="h-4 w-[1px] bg-border mx-2 hidden md:block" />
-
-            <Link href="https://github.com" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="h-8 w-8 px-0 text-muted-foreground hover:text-foreground">
-                <GitHubLogoIcon className="h-4 w-4" />
-                <span className="sr-only">GitHub</span>
-              </Button>
-            </Link>
-            <Link href="https://linkedin.com" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="h-8 w-8 px-0 text-muted-foreground hover:text-foreground">
-                <LinkedInLogoIcon className="h-4 w-4" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
-            </Link>
           </nav>
 
           {/* Mobile Menu Toggle */}

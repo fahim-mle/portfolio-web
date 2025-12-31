@@ -58,8 +58,8 @@ export function ProjectsSection() {
   }, { scope: containerRef });
 
   return (
-    <section id="projects" className="min-h-screen flex items-center bg-[#0a0a0a] relative z-10 py-24" ref={containerRef}>
-      <Container className="py-24 md:py-32">
+    <section id="projects" className="flex items-center bg-[#0a0a0a] relative z-10 py-12 md:py-24" ref={containerRef}>
+      <Container className="py-12 md:py-24">
         <div className="flex flex-col gap-12">
           <div className="max-w-xl">
             <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight mb-4 text-[#D4AF37]">Projects</h1>

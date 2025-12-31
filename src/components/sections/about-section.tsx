@@ -32,8 +32,8 @@ export function AboutSection() {
   }, { scope: containerRef });
 
   return (
-    <section id="about" className="min-h-screen flex items-center bg-[#0a0a0a]/90 relative z-10 py-24" ref={containerRef}>
-      <Container className="py-24 md:py-32">
+    <section id="about" className="flex items-center bg-[#0a0a0a]/90 relative z-10 py-12 md:py-24" ref={containerRef}>
+      <Container className="py-12 md:py-24">
         <div className="flex flex-col gap-12 max-w-2xl mx-auto">
           <h1 className="animate-item text-4xl md:text-5xl font-serif font-medium tracking-tight text-[#D4AF37]">About</h1>
 

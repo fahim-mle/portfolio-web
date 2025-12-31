@@ -7,9 +7,11 @@ import { useEffect, useRef, useState } from 'react';
 
 export const HeroSection = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
@@ -18,13 +20,13 @@ export const HeroSection = () => {
   }, []);
 
   // Parallax Effect style for text
-  const parallaxStyle = {
-    transform: `translate(${-(mousePos.x - (typeof window !== 'undefined' ? window.innerWidth : 0)/2) * 0.015}px, ${-(mousePos.y - (typeof window !== 'undefined' ? window.innerHeight : 0)/2) * 0.015}px)`
-  };
+  const parallaxStyle = mounted ? {
+    transform: `translate(${-(mousePos.x - window.innerWidth/2) * 0.015}px, ${-(mousePos.y - window.innerHeight/2) * 0.015}px)`
+  } : {};
 
-  const parallaxStyleDeep = {
-    transform: `translate(${-(mousePos.x - (typeof window !== 'undefined' ? window.innerWidth : 0)/2) * 0.03}px, ${-(mousePos.y - (typeof window !== 'undefined' ? window.innerHeight : 0)/2) * 0.03}px)`
-  };
+  const parallaxStyleDeep = mounted ? {
+    transform: `translate(${-(mousePos.x - window.innerWidth/2) * 0.03}px, ${-(mousePos.y - window.innerHeight/2) * 0.03}px)`
+  } : {};
 
   useGSAP(() => {
     const tl = gsap.timeline();

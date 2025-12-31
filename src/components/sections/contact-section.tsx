@@ -35,8 +35,8 @@ export function ContactSection() {
     }, { scope: containerRef });
 
   return (
-    <section id="contact" className="min-h-[80vh] flex items-center bg-[#0a0a0a]/90 relative z-10 py-24" ref={containerRef}>
-      <Container className="py-24 max-w-md mx-auto">
+    <section id="contact" className="flex items-center bg-[#0a0a0a]/90 relative z-10 py-12 md:py-24" ref={containerRef}>
+      <Container className="py-12 md:py-24 max-w-md mx-auto">
         <div className="flex flex-col gap-6">
           <div className="text-center space-y-2">
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-[#D4AF37]">Get in Touch</h1>
