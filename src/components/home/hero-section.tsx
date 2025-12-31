@@ -2,7 +2,7 @@
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ChevronDown, Code2, Database, Github, Linkedin, Terminal } from 'lucide-react';
+import { Code2, Database, Github, Linkedin, Terminal } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 export const HeroSection = () => {
@@ -115,9 +115,12 @@ export const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
-        <span className="text-[10px] uppercase tracking-widest font-sans">Scroll</span>
-        <ChevronDown size={16} />
+      <div
+        className="fixed bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce transition-opacity duration-300 pointer-events-none z-50"
+        style={{ opacity: Math.max(0, 1 - (typeof window !== 'undefined' ? window.scrollY : 0) / 300) }}
+      >
+        <span className="text-[10px] uppercase tracking-widest font-sans text-white/50">Scroll</span>
+        <ChevronDown size={16} className="text-white/50" />
       </div>
 
     </main>
