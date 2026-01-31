@@ -92,7 +92,8 @@ export function Navbar() {
                     onClick={(e) => scrollToSection(e, item.href)}
                     className={cn(
                       'relative py-1 transition-colors hover:text-accent group uppercase tracking-widest text-xs',
-                      activeSection === item.href ? 'text-accent' : 'text-muted-foreground'
+                      'hover:drop-shadow-[0_0_12px_rgba(0,229,255,0.55)]',
+                      activeSection === item.href ? 'text-accent drop-shadow-[0_0_12px_rgba(0,229,255,0.45)]' : 'text-muted-foreground'
                     )}
                   >
                     {item.label}
@@ -112,8 +113,9 @@ export function Navbar() {
                   href={resolvedHref}
                   className={cn(
                     'relative py-1 transition-colors hover:text-accent group uppercase tracking-widest text-xs',
+                    'hover:drop-shadow-[0_0_12px_rgba(0,229,255,0.55)]',
                     // Active section only makes sense on the home page.
-                    isHome && activeSection === item.href ? 'text-accent' : 'text-muted-foreground'
+                    isHome && activeSection === item.href ? 'text-accent drop-shadow-[0_0_12px_rgba(0,229,255,0.45)]' : 'text-muted-foreground'
                   )}
                 >
                   {item.label}
@@ -132,12 +134,20 @@ export function Navbar() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center gap-2">
             <Link href="/resume">
-              <Button size="sm" variant="ghost" className="text-xs h-8 text-muted-foreground hover:text-foreground">
+              <Button
+                size="sm"
+                variant="ghost"
+                className="text-xs h-8 text-muted-foreground hover:text-accent hover:drop-shadow-[0_0_12px_rgba(0,229,255,0.55)] transition"
+              >
                 Journey
               </Button>
             </Link>
             <Link href="/blog">
-              <Button size="sm" variant="outline" className="text-xs h-8 border-accent/20 hover:border-accent hover:bg-accent/10">
+              <Button
+                size="sm"
+                variant="outline"
+                className="text-xs h-8 border-accent/20 hover:border-accent hover:bg-accent/10 hover:drop-shadow-[0_0_12px_rgba(0,229,255,0.35)] transition"
+              >
                 Read the blog
               </Button>
             </Link>

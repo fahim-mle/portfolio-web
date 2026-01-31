@@ -76,28 +76,29 @@ export const HeroSection = () => {
 
         {/* Role Tags */}
         <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-6 font-sans text-xs md:text-sm tracking-[0.2em] text-gray-400">
-          <span className="hero-tag flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-            <Database size={14} className="text-accent" /> SYSTEMS & SECURITY
+          <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
+            <Code2 size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> FULL-STACK
           </span>
-          <span className="hero-tag flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-            <Code2 size={14} className="text-accent" /> DATA & ECONOMICS
+          <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
+            <Database size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> DATA & ANALYTICS
           </span>
-          <span className="hero-tag flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-            <Terminal size={14} className="text-accent" /> FULL STACK ENG
+          <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
+            <Terminal size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> LINUX & DEVOPS
           </span>
         </div>
 
         {/* Main Title - Masked Reveal */}
-        <div className="overflow-hidden">
-          <h1 className="reveal-text text-6xl md:text-8xl lg:text-9xl font-serif font-bold leading-[1.1] text-center md:text-left mix-blend-overlay opacity-90">
+        {/* NOTE: overflow-hidden is used for the reveal animation; we add padding+negative margin so glow isn't clipped */}
+        <div className="overflow-hidden -m-8 p-8">
+          <h1 className="reveal-text text-6xl md:text-8xl lg:text-9xl font-serif font-bold leading-[1.1] text-center md:text-left mix-blend-overlay opacity-90 transition duration-300 hover:drop-shadow-[0_0_28px_rgba(0,229,255,0.35)]">
             MIND IN
           </h1>
         </div>
 
         <div className="w-full h-[1px] bg-gradient-to-r from-accent to-transparent my-4 line-separator origin-left" />
 
-        <div className="overflow-hidden">
-          <h1 className="reveal-text text-6xl md:text-8xl lg:text-9xl font-serif font-bold leading-[1.1] text-center md:text-right text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
+        <div className="overflow-hidden -m-8 p-8">
+          <h1 className="reveal-text text-6xl md:text-8xl lg:text-9xl font-serif font-bold leading-[1.1] text-center md:text-right text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 transition duration-300 hover:from-accent hover:to-accent-secondary hover:drop-shadow-[0_0_30px_rgba(0,229,255,0.45)]">
             ROOT
           </h1>
         </div>
@@ -106,7 +107,7 @@ export const HeroSection = () => {
         <div className="mt-12 flex flex-col md:flex-row justify-between items-end gap-8" style={parallaxStyleDeep}>
           <div className="max-w-md text-gray-400 font-sans leading-relaxed text-sm md:text-base text-center md:text-left reveal-text">
             <p>
-              Full‑stack Engineer & Systems Thinker. I build secure, high‑performance systems and the analytics that help us understand the real world.
+              Full‑stack engineer with a love for Linux, data, and automation. AI/ML enthusiast — I build reliable systems and automate the boring stuff.
             </p>
           </div>
 
