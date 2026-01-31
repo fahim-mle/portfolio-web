@@ -2,7 +2,7 @@ import { JOURNEY } from '@/lib/resume-data';
 
 export function PlainResume() {
   return (
-    <div className="max-w-3xl mx-auto bg-white text-black p-8 md:p-12 shadow-sm my-8 font-sans">
+    <div id="print-resume" className="max-w-3xl mx-auto bg-white text-black p-8 md:p-12 shadow-sm my-8 font-sans">
       {/* Header */}
       <div className="border-b border-gray-300 pb-6 mb-6">
         <h1 className="text-3xl font-bold uppercase tracking-tight">Fahim Forhad</h1>
@@ -32,9 +32,9 @@ export function PlainResume() {
             <div key={role.id}>
               <div className="flex justify-between items-baseline mb-1">
                 <h3 className="font-bold text-gray-900">{role.title}</h3>
-                <span className="text-sm text-gray-500">{role.period}</span>
+                <span className="text-sm text-gray-500">{role.year}</span>
               </div>
-              <div className="text-sm text-gray-600 mb-2">{role.company} — {role.location}</div>
+              <div className="text-sm text-gray-600 mb-2">{role.subtitle}</div>
               <p className="text-sm text-gray-800 leading-relaxed">{role.description}</p>
             </div>
           ))}
@@ -49,9 +49,9 @@ export function PlainResume() {
             <div key={edu.id}>
               <div className="flex justify-between items-baseline mb-1">
                 <h3 className="font-bold text-gray-900">{edu.title}</h3>
-                <span className="text-sm text-gray-500">{edu.period}</span>
+                <span className="text-sm text-gray-500">{edu.year}</span>
               </div>
-              <div className="text-sm text-gray-600">{edu.company}</div>
+              <div className="text-sm text-gray-600">{edu.subtitle}</div>
             </div>
           ))}
         </div>

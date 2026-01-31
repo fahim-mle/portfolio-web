@@ -2,63 +2,97 @@
 
 import { Badge } from '@/components/ui/badge';
 import { JOURNEY } from '@/lib/resume-data';
-import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap } from 'lucide-react';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { Briefcase, GraduationCap, User } from 'lucide-react';
+import { useRef } from 'react';
 
 export function JourneyTimeline() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
-    <div className="relative border-l border-border/50 ml-4 md:ml-12 space-y-12 py-8">
-      {JOURNEY.map((item, index) => {
-        const Icon = item.type === 'work' ? Briefcase : GraduationCap;
-        
-        return (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="relative pl-8 md:pl-12"
-          >
-            {/* Timeline Dot */}
-            <span className="absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-background" />
-            
-            {/* Icon (Floating left) */}
-            <div className="absolute -left-10 md:-left-14 top-0 p-2 rounded-full bg-secondary/50 border border-border/50 text-muted-foreground hidden md:flex items-center justify-center">
-              <Icon size={16} />
-            </div>
+    <div ref={ref} className="relative py-16 md:py-24 max-w-4xl mx-auto">
+      {/* The Central Line */}
+      <motion.div
+        className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-border origin-top"
+        style={{ scaleY }}
+      />
+      <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-border/20" />
 
-            <div className="flex flex-col gap-2">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <span className="text-xs font-mono text-muted-foreground tracking-widest uppercase">
-                  {item.period}
-                </span>
-                <span className="text-xs text-muted-foreground/60">{item.location}</span>
-              </div>
+      <div className="space-y-24">
+        {JOURNEY.map((item, index) => {
+          const isLeft = index % 2 === 0;
+          let Icon = Briefcase;
+          if (item.type === 'education') Icon = GraduationCap;
+          if (item.type === 'life') Icon = User;
 
-              <h3 className="text-xl md:text-2xl font-serif font-medium text-foreground">
-                {item.title}
-              </h3>
+          return (
+            <div key={item.id} className={`relative flex flex-col md:flex-row gap-8 md:gap-0 ${isLeft ? 'md:flex-row-reverse' : ''}`}>
               
-              <div className="text-sm font-medium text-accent">
-                {item.company}
+              {/* Timeline Node (Center) */}
+              <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 flex items-center justify-center z-10">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  className="bg-background border-2 border-accent p-2 rounded-full shadow-sm"
+                >
+                  <Icon size={16} className="text-accent" />
+                </motion.div>
               </div>
 
-              <p className="text-muted-foreground leading-relaxed mt-2 max-w-2xl">
-                {item.description}
-              </p>
+              {/* Content Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className={`ml-12 md:ml-0 md:w-1/2 ${isLeft ? 'md:pl-16' : 'md:pr-16 text-right'}`}
+              >
+                <div className={`flex flex-col gap-2 ${!isLeft && 'md:items-end'}`}>
+                  <span className="font-mono text-accent text-sm font-bold tracking-wider">
+                    {item.year}
+                  </span>
+                  
+                  <h3 className="text-2xl font-serif font-medium text-foreground">
+                    {item.title}
+                  </h3>
+                  
+                  <div className="text-sm text-muted-foreground font-medium mb-2">
+                    {item.subtitle}
+                  </div>
 
-              <div className="flex flex-wrap gap-2 mt-4">
-                {item.skills.map(skill => (
-                  <Badge key={skill} variant="secondary" className="text-xs font-normal border-border/40 text-muted-foreground">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+
+                  {item.tech && (
+                    <div className={`flex flex-wrap gap-2 mt-3 ${!isLeft && 'md:justify-end'}`}>
+                      {item.tech.map(t => (
+                        <Badge key={t} variant="outline" className="border-accent/30 text-xs">
+                          {t}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+
+              {/* Empty space for the other side */}
+              <div className="hidden md:block md:w-1/2" />
             </div>
-          </motion.div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }

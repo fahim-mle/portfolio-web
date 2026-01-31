@@ -1,68 +1,88 @@
 export interface Milestone {
   id: string;
-  period: string;
+  year: string;
   title: string;
-  company: string;
-  location: string;
+  subtitle: string; // Company or context
   description: string;
-  skills: string[];
-  type: 'work' | 'education';
+  tech?: string[];
+  type: 'work' | 'life' | 'education';
 }
 
 export const JOURNEY: Milestone[] = [
   {
-    id: 'qcif',
-    period: 'Sep 2025 – Dec 2025',
-    title: 'Software Engineer (ML Security)',
-    company: 'QCIF (Queensland Cyber Infrastructure)',
-    location: 'Brisbane, AU',
+    id: 'now',
+    year: 'Now',
+    title: 'Building & Thinking',
+    subtitle: 'Brisbane, AU',
     description:
-      'Where systems meet security. I architected a secure, containerised federated learning environment. The challenge: enabling ML training without moving the data. The solution: mTLS, OpenVPN, and Keycloak for identity.',
-    skills: ['Docker', 'mTLS', 'Keycloak', 'Federated Learning', 'Python'],
+      'I’m looking for the next problem. I want to build systems that respect user privacy and actually work. I’m also diving deep into economics—understanding why the world works the way it does.',
+    type: 'life',
+  },
+  {
+    id: 'qcif',
+    year: '2025',
+    title: 'ML Security Engineer',
+    subtitle: 'QCIF',
+    description:
+      'The problem: How do you train AI on data you can’t see? I built a secure environment using mTLS and VPNs so we could do Federated Learning without moving the raw data.',
+    tech: ['Docker', 'mTLS', 'Keycloak', 'Python'],
     type: 'work',
   },
   {
     id: 'sarina-russo',
-    period: 'May 2025 – Aug 2025',
-    title: 'Software Engineer (Data & Analytics)',
-    company: 'Sarina Russo Group',
-    location: 'Brisbane, AU',
+    year: '2025',
+    title: 'Data Engineer',
+    subtitle: 'Sarina Russo Group',
     description:
-      'Built the predictive pipeline to identify at-risk students. This wasn’t just code; it was about stakeholder enablement—replacing spreadsheets with automated Power BI dashboards that drove real operational decisions.',
-    skills: ['Python', 'Power BI', 'Predictive Modeling', 'Analytics'],
+      'I built a pipeline to predict which students might drop out. It replaced manual spreadsheets with a real dashboard that helped staff act fast.',
+    tech: ['Python', 'Power BI', 'Analytics'],
     type: 'work',
   },
   {
     id: 'masters',
-    period: 'Mar 2024 – Dec 2025',
-    title: 'Master of Data Science (Professional)',
-    company: 'James Cook University',
-    location: 'Brisbane, AU',
+    year: '2024-25',
+    title: 'Masters in Data Science',
+    subtitle: 'James Cook University',
     description:
-      'Deepening the "Signal" side of my "Systems & Signals" philosophy. Focused on Data Mining, Machine Learning, and Statistical Modeling to complement my engineering background.',
-    skills: ['Data Mining', 'Statistics', 'Research'],
+      'I already knew how to build software. I went back to school to learn how to measure it properly—statistics, mining, and the math behind the models.',
     type: 'education',
   },
   {
-    id: 'gain-solutions',
-    period: 'Sep 2021 – Nov 2023',
-    title: 'Frontend Team Lead',
-    company: 'Gain Solutions',
-    location: 'Dhaka, Bangladesh',
+    id: 'move',
+    year: '2024',
+    title: 'Moving to Australia',
+    subtitle: 'Life Change',
     description:
-      'Leadership and scale. Led the frontend for Uniteliving.no (100K+ users). My focus was performance: cutting render times from 7s to 1.3s and optimizing the dashboard load by 50%. Mentored a team of 4.',
-    skills: ['React', 'Performance', 'Team Leadership', 'Next.js'],
+      'Left my comfort zone in Dhaka. Moving continents taught me more about adaptability than any code framework ever could.',
+    type: 'life',
+  },
+  {
+    id: 'gain',
+    year: '2021-23',
+    title: 'Frontend Team Lead',
+    subtitle: 'Gain Solutions',
+    description:
+      'We had a platform with 100K+ users that was too slow. I led the team to fix it—cutting load times in half. This is where I learned that performance is a feature.',
+    tech: ['React', 'Next.js', 'Performance'],
     type: 'work',
   },
   {
     id: 'ideaxen',
-    period: 'Aug 2020 – Jul 2021',
-    title: 'Junior Software Developer',
-    company: 'Ideaxen',
-    location: 'Dhaka, Bangladesh',
+    year: '2020',
+    title: 'Software Developer',
+    subtitle: 'Ideaxen',
     description:
-      'The foundation. Built core modules for ERP systems using C# .NET. Learned the importance of data integrity and business logic in complex inventory management.',
-    skills: ['C#', '.NET', 'SQL', 'ERP'],
+      'My start. I built ERP modules. It wasn’t flashy, but it taught me that business logic and data integrity are the backbone of everything.',
+    tech: ['C#', '.NET', 'SQL'],
     type: 'work',
   },
+  {
+    id: 'realization',
+    year: '2020',
+    title: 'The Realization',
+    subtitle: 'Dhaka',
+    description:
+      'I realized code is just a tool. The real systems that control our lives are economic and social. I decided I needed to understand both.',
+    type: 'life',
+  }
 ];
