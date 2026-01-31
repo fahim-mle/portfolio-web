@@ -15,8 +15,25 @@ const ibmPlexSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "mindinroot | Systems, Signals & Security",
+  metadataBase: new URL('https://mindinroot.com'),
+  title: {
+    default: "mindinroot | Systems, Signals & Security",
+    template: "%s | mindinroot"
+  },
   description: "Full-stack engineer & data scientist building secure, high-performance systems. Exploring the intersection of engineering, economics, and privacy.",
+  openGraph: {
+    title: "mindinroot | Systems, Signals & Security",
+    description: "Full-stack engineer & data scientist building secure, high-performance systems. Exploring the intersection of engineering, economics, and privacy.",
+    url: 'https://mindinroot.com',
+    siteName: 'mindinroot',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "mindinroot | Systems, Signals & Security",
+    description: "Full-stack engineer & data scientist building secure, high-performance systems.",
+  },
   icons: {
     icon: [
       { url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>", type: "image/svg+xml" },
