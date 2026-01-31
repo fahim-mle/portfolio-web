@@ -77,13 +77,13 @@ export const HeroSection = () => {
         {/* Role Tags */}
         <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-6 font-sans text-xs md:text-sm tracking-[0.2em] text-gray-400">
           <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
-            <Terminal size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> DEVOPS & CLOUD
-          </span>
-          <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
-            <Code2 size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> FULL-STACK ENGINEERING
+            <Code2 size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> FULL-STACK
           </span>
           <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
             <Database size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> DATA & ANALYTICS
+          </span>
+          <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
+            <Terminal size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> LINUX & DEVOPS
           </span>
         </div>
 
@@ -107,7 +107,7 @@ export const HeroSection = () => {
         <div className="mt-12 flex flex-col md:flex-row justify-between items-end gap-8" style={parallaxStyleDeep}>
           <div className="max-w-md text-gray-400 font-sans leading-relaxed text-sm md:text-base text-center md:text-left reveal-text">
             <p>
-              Full‑stack Engineer & Systems Thinker. I build secure, high‑performance systems and the analytics that help us understand the real world.
+              Full‑stack engineer with a love for Linux, data, and automation. AI/ML enthusiast — I build reliable systems and automate the boring stuff.
             </p>
           </div>
 
