@@ -4,14 +4,13 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ChevronDown, Code2, Database, Github, Linkedin, Terminal } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { useWindowSize } from '@/lib/use-window-size';
 
 export const HeroSection = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMounted(true);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
@@ -19,14 +18,19 @@ export const HeroSection = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Parallax Effect style for text
-  const parallaxStyle = mounted ? {
-    transform: `translate(${-(mousePos.x - window.innerWidth/2) * 0.015}px, ${-(mousePos.y - window.innerHeight/2) * 0.015}px)`
-  } : {};
+  const { width, height } = useWindowSize();
 
-  const parallaxStyleDeep = mounted ? {
-    transform: `translate(${-(mousePos.x - window.innerWidth/2) * 0.03}px, ${-(mousePos.y - window.innerHeight/2) * 0.03}px)`
-  } : {};
+  const parallaxStyle = width && height
+    ? {
+        transform: `translate(${-(mousePos.x - width / 2) * 0.015}px, ${-(mousePos.y - height / 2) * 0.015}px)`
+      }
+    : undefined;
+
+  const parallaxStyleDeep = width && height
+    ? {
+        transform: `translate(${-(mousePos.x - width / 2) * 0.03}px, ${-(mousePos.y - height / 2) * 0.03}px)`
+      }
+    : undefined;
 
     // Scroll indicator opacity logic
     const [scrollOpacity, setScrollOpacity] = useState(1);

@@ -12,26 +12,29 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
   {
-    title: "Personal Portfolio",
-    description: "A minimal, nature-inspired portfolio designed to reflect curiosity and systems thinking. Built with Next.js and Tailwind.",
-    tags: ["Next.js", "React", "Tailwind CSS", "Design"],
-    href: "https://github.com/ghost/portfolio",
+    title: 'Federated Learning — Secure Implementation',
+    description:
+      'Designed a containerised federated learning environment with privacy-preserving communication (mTLS, OpenVPN, Keycloak/OIDC), validated with multiple concurrent nodes.',
+    tags: ['Python', 'Docker', 'Federated Learning', 'Security'],
+    href: 'https://github.com/fahim-mle/federated_learning_secure_implementation',
+    icon: <RocketIcon className="h-5 w-5" />
+  },
+  {
+    title: 'Wellbeing E‑commerce (Showcase)',
+    description:
+      'A practical full‑stack build to demonstrate product thinking, UI quality, and reliable engineering practices. (Screenshots + write-up coming.)',
+    tags: ['TypeScript', 'Next.js', 'CI/CD', 'Docker'],
+    href: 'https://github.com/fahim-mle/welbeing_ecommerce',
     icon: <CodeIcon className="h-5 w-5" />
   },
   {
-    title: "Neural Network Viz",
-    description: "Interactive visualization of a simple neural network learning process. Explores the 'black box' of AI.",
-    tags: ["Python", "TensorFlow", "D3.js", "Data"],
-    href: "#",
+    title: 'Portfolio Website (This Site)',
+    description:
+      'A clean Next.js portfolio with a blog — designed to evolve into deeper write-ups and case studies over time.',
+    tags: ['Next.js', 'TypeScript', 'UI', 'Vercel'],
+    href: 'https://github.com/fahim-mle/portfolio-web',
     icon: <MixerHorizontalIcon className="h-5 w-5" />
   },
-  {
-    title: "Distributed Logs",
-    description: "A high-performance distributed logging system meant to test consistency models across distributed nodes.",
-    tags: ["Go", "gRPC", "Distributed Systems"],
-    href: "#",
-    icon: <RocketIcon className="h-5 w-5" />
-  }
 ];
 
 export function ProjectsSection() {
@@ -69,7 +72,7 @@ export function ProjectsSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROJECTS.map((project, index) => (
+            {PROJECTS.map((project) => (
               <div key={project.title} className="animate-card h-full">
                   <ProjectCard {...project} />
               </div>

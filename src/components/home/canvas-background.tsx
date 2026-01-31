@@ -39,48 +39,38 @@ export const CanvasBackground = () => {
       height = canvas.height = window.innerHeight;
     };
 
-    class ParticleImpl implements Particle {
-        x: number;
-        y: number;
-        vx: number;
-        vy: number;
-        size: number;
-        alpha: number;
-
-        constructor() {
-          this.x = Math.random() * width;
-          this.y = Math.random() * height;
-          this.vx = (Math.random() - 0.5) * 0.5;
-          this.vy = (Math.random() - 0.5) * 0.5;
-          this.size = Math.random() * 2 + 1;
-          this.alpha = Math.random() * 0.5 + 0.1;
-        }
-
+    const createParticle = (): Particle => {
+      const p: Particle = {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 2 + 1,
+        alpha: Math.random() * 0.5 + 0.1,
         update() {
           this.x += this.vx;
           this.y += this.vy;
 
-          // Wrap around screen
           if (this.x < 0) this.x = width;
           if (this.x > width) this.x = 0;
           if (this.y < 0) this.y = height;
           if (this.y > height) this.y = 0;
-        }
-
+        },
         draw() {
-          if (!ctx) return;
           ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fill();
         }
-      }
+      };
+      return p;
+    };
 
     const init = () => {
       particles = [];
       const count = Math.floor((width * height) / 15000); // Density
       for (let i = 0; i < count; i++) {
-        particles.push(new ParticleImpl());
+        particles.push(createParticle());
       }
     };
 

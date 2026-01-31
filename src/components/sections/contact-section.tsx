@@ -7,12 +7,18 @@ import { Textarea } from '@/components/ui/textarea';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { useContactForm } from '@/lib/use-contact-form';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function ContactSection() {
     const containerRef = useRef<HTMLDivElement>(null);
+
+    const { status, error, submit } = useContactForm();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
 
     useGSAP(() => {
       const el = containerRef.current;
@@ -46,11 +52,51 @@ export function ContactSection() {
             </p>
           </div>
 
-          <form className="w-full space-y-4">
-            <Input placeholder="Name" className="bg-[#111] border-[#333] focus:border-[#D4AF37]" />
-            <Input placeholder="Email" type="email" className="bg-[#111] border-[#333] focus:border-[#D4AF37]" />
-            <Textarea placeholder="Message" className="min-h-[150px] bg-[#111] border-[#333] focus:border-[#D4AF37]" />
-            <Button className="w-full bg-[#D4AF37] text-black hover:bg-[#b5952f]" size="lg">Send Message</Button>
+          <form
+            className="w-full space-y-4"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              await submit({ name, email, message });
+            }}
+          >
+            <Input
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="bg-[#111] border-[#333]"
+            />
+            <Input
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="bg-[#111] border-[#333]"
+            />
+            <Textarea
+              placeholder="Message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+              className="min-h-[150px] bg-[#111] border-[#333]"
+            />
+
+            {status === 'sent' && (
+              <p className="text-sm text-emerald-400">Message sent. I’ll get back to you soon.</p>
+            )}
+            {status === 'error' && (
+              <p className="text-sm text-red-400">{error}</p>
+            )}
+
+            <Button
+              className="w-full bg-[#D4AF37] text-black hover:bg-[#b5952f]"
+              size="lg"
+              type="submit"
+              disabled={status === 'sending'}
+            >
+              {status === 'sending' ? 'Sending…' : 'Send Message'}
+            </Button>
           </form>
         </div>
       </Container>
