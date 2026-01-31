@@ -77,18 +77,19 @@ export const HeroSection = () => {
         {/* Role Tags */}
         <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-6 font-sans text-xs md:text-sm tracking-[0.2em] text-gray-400">
           <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
-            <Database size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> SYSTEMS & SECURITY
+            <Terminal size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> DEVOPS & CLOUD
           </span>
           <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
-            <Code2 size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> DATA & ECONOMICS
+            <Code2 size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> FULL-STACK ENGINEERING
           </span>
           <span className="hero-tag group flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:text-foreground hover:bg-accent/5 hover:drop-shadow-[0_0_14px_rgba(0,229,255,0.45)]">
-            <Terminal size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> FULL STACK ENG
+            <Database size={14} className="text-accent transition group-hover:drop-shadow-[0_0_10px_rgba(0,229,255,0.75)]" /> DATA & ANALYTICS
           </span>
         </div>
 
         {/* Main Title - Masked Reveal */}
-        <div className="overflow-hidden">
+        {/* NOTE: overflow-hidden is used for the reveal animation; we add padding+negative margin so glow isn't clipped */}
+        <div className="overflow-hidden -m-8 p-8">
           <h1 className="reveal-text text-6xl md:text-8xl lg:text-9xl font-serif font-bold leading-[1.1] text-center md:text-left mix-blend-overlay opacity-90 transition duration-300 hover:drop-shadow-[0_0_28px_rgba(0,229,255,0.35)]">
             MIND IN
           </h1>
@@ -96,7 +97,7 @@ export const HeroSection = () => {
 
         <div className="w-full h-[1px] bg-gradient-to-r from-accent to-transparent my-4 line-separator origin-left" />
 
-        <div className="overflow-hidden">
+        <div className="overflow-hidden -m-8 p-8">
           <h1 className="reveal-text text-6xl md:text-8xl lg:text-9xl font-serif font-bold leading-[1.1] text-center md:text-right text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 transition duration-300 hover:from-accent hover:to-accent-secondary hover:drop-shadow-[0_0_30px_rgba(0,229,255,0.45)]">
             ROOT
           </h1>
