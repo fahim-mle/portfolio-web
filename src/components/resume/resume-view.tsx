@@ -21,7 +21,7 @@ export function ResumeView() {
           <p className="text-xl text-muted-foreground font-light">
             {view === 'journey' 
               ? 'A timeline of problems solved and systems built.' 
-              : 'Clean, printable, and to the point.'}
+              : 'A clean, text-focused overview.'}
           </p>
         </div>
 
