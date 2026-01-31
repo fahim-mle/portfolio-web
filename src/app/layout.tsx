@@ -15,8 +15,13 @@ const ibmPlexSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "Personal portfolio website",
+  title: "Fahim Forhad | Systems, Signals & Security",
+  description: "Full-stack engineer & data scientist building secure, high-performance systems. Exploring the intersection of engineering, economics, and privacy.",
+  icons: {
+    icon: [
+      { url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👻</text></svg>", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({
