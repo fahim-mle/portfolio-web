@@ -39,3 +39,43 @@
     color: hsl(var(--accent-foreground));
   }
 }
+
+@media print {
+  /* Hide everything by default */
+  body > * {
+    display: none !important;
+  }
+
+  /* Only show the print-resume container */
+  body > #print-resume-root {
+    display: block !important;
+  }
+  
+  /* But wait, React portal? No, just identifying the main container. 
+     Actually, if we hide body > *, we hide the root layout div.
+     Better approach: hide specific non-print elements or use a specific class.
+  */
+  
+  nav, header, footer, button, .custom-cursor, .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  #print-resume {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white;
+    color: black;
+    box-shadow: none;
+    z-index: 9999;
+  }
+}

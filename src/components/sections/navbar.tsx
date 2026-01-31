@@ -14,7 +14,6 @@ const NAV_ITEMS = [
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
-  { label: 'Blog', href: '/blog' },
 ];
 
 export function Navbar() {
@@ -132,6 +131,11 @@ export function Navbar() {
 
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center gap-2">
+            <Link href="/resume">
+              <Button size="sm" variant="ghost" className="text-xs h-8 text-muted-foreground hover:text-foreground">
+                Journey
+              </Button>
+            </Link>
             <Link href="/blog">
               <Button size="sm" variant="outline" className="text-xs h-8 border-accent/20 hover:border-accent hover:bg-accent/10">
                 Read the blog
