@@ -5,7 +5,7 @@ import { PlainResume } from '@/components/resume/plain-resume';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { cn } from '@/lib/utils';
-import { Download, FileText, Map } from 'lucide-react';
+import { FileText, Map } from 'lucide-react';
 import { useState } from 'react';
 
 export function ResumeView() {
@@ -57,11 +57,6 @@ export function ResumeView() {
         </div>
       ) : (
         <div className="animate-in fade-in zoom-in-95 duration-300">
-          <div className="flex justify-end mb-4">
-             <Button variant="outline" size="sm" className="gap-2" onClick={() => window.print()}>
-                <Download size={16} /> Print / Save PDF
-             </Button>
-          </div>
           <PlainResume />
         </div>
       )}
