@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
-import { signOut, useSession } from '@/lib/auth-client';
+// auth removed (portfolio is public)
 import { cn } from '@/lib/utils';
 import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
@@ -67,7 +67,7 @@ export function Navbar() {
         {/* Logo */}
         <div className="mr-8 hidden md:flex">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="font-serif font-bold text-lg tracking-tight text-[#D4AF37]">Ghost.</span>
+            <span className="font-serif font-bold text-lg tracking-tight text-[#D4AF37]">mindinroot</span>
           </Link>
         </div>
 
@@ -98,7 +98,11 @@ export function Navbar() {
 
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center gap-2">
-            <AuthButtons />
+            <Link href="/blog">
+              <Button size="sm" variant="outline" className="text-xs h-8 border-accent/20 hover:border-accent hover:bg-accent/10">
+                Read the blog
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -136,34 +140,4 @@ export function Navbar() {
   );
 }
 
-function AuthButtons() {
-  const { data: session } = useSession();
-
-  if (session) {
-    return (
-      <div className="flex items-center gap-4">
-        <span className="text-xs text-muted-foreground hidden lg:inline-block font-mono">
-          {session.user?.email}
-        </span>
-        <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-xs h-8">
-          Sign Out
-        </Button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex items-center gap-2">
-      <Link href="/login">
-        <Button variant="ghost" size="sm" className="text-xs h-8">
-          Login
-        </Button>
-      </Link>
-      <Link href="/signup">
-        <Button size="sm" variant="outline" className="text-xs h-8 border-accent/20 hover:border-accent hover:bg-accent/10">
-          Sign Up
-        </Button>
-      </Link>
-    </div>
-  );
-}
+// Auth removed (portfolio is public).
