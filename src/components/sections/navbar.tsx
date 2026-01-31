@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 const NAV_ITEMS = [
   { label: 'Home', href: '#' },
   { label: 'About', href: '#about' },
+  { label: 'Journey', href: '/resume' },
   { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
   { label: 'Blog', href: '/blog' },
