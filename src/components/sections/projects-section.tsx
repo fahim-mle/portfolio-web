@@ -65,9 +65,9 @@ export function ProjectsSection() {
       <Container className="py-12 md:py-24">
         <div className="flex flex-col gap-12">
           <div className="max-w-xl">
-            <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight mb-4 text-[#D4AF37]">Projects</h1>
+            <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight mb-4 text-accent">Projects</h1>
             <p className="text-xl text-muted-foreground font-light">
-              Questions asked, hypotheses tested, and systems built.
+              Two tracks, one theme: build solid systems, measure what matters.
             </p>
           </div>
 

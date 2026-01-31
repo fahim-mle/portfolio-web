@@ -74,25 +74,59 @@ export function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           <nav className="flex items-center gap-8 text-sm font-medium">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
-                className={cn(
-                  "relative py-1 transition-colors hover:text-[#D4AF37] group uppercase tracking-widest text-xs",
-                  activeSection === item.href ? "text-[#D4AF37]" : "text-muted-foreground"
-                )}
-              >
-                {item.label}
-                <span
+            {NAV_ITEMS.map((item) => {
+              const isHash = item.href.startsWith('#');
+              const isHome = pathname === '/';
+
+              // From non-home pages (e.g. /blog), hash links should navigate back to /#section
+              const resolvedHref = isHash
+                ? item.href === '#'
+                  ? '/'
+                  : `/${item.href}`
+                : item.href;
+
+              if (isHash && isHome) {
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => scrollToSection(e, item.href)}
+                    className={cn(
+                      'relative py-1 transition-colors hover:text-accent group uppercase tracking-widest text-xs',
+                      activeSection === item.href ? 'text-accent' : 'text-muted-foreground'
+                    )}
+                  >
+                    {item.label}
+                    <span
+                      className={cn(
+                        'absolute left-0 bottom-0 h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-full',
+                        activeSection === item.href ? 'w-full' : 'w-0'
+                      )}
+                    />
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.href}
+                  href={resolvedHref}
                   className={cn(
-                    "absolute left-0 bottom-0 h-[1px] w-0 bg-[#D4AF37] transition-all duration-300 group-hover:w-full",
-                    activeSection === item.href ? "w-full" : "w-0"
+                    'relative py-1 transition-colors hover:text-accent group uppercase tracking-widest text-xs',
+                    // Active section only makes sense on the home page.
+                    isHome && activeSection === item.href ? 'text-accent' : 'text-muted-foreground'
                   )}
-                />
-              </a>
-            ))}
+                >
+                  {item.label}
+                  <span
+                    className={cn(
+                      'absolute left-0 bottom-0 h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-full',
+                      isHome && activeSection === item.href ? 'w-full' : 'w-0'
+                    )}
+                  />
+                </Link>
+              );
+            })}
           </nav>
         </div>
 
@@ -120,19 +154,28 @@ export function Navbar() {
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border shadow-2xl p-6 flex flex-col gap-6 md:hidden animate-in slide-in-from-top-2 fade-in">
           <nav className="flex flex-col gap-4">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "text-lg font-medium transition-colors hover:text-accent",
-                  pathname === item.href ? "text-accent" : "text-muted-foreground"
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isHash = item.href.startsWith('#');
+              const resolvedHref = isHash
+                ? item.href === '#'
+                  ? '/'
+                  : `/${item.href}`
+                : item.href;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={resolvedHref}
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    'text-lg font-medium transition-colors hover:text-accent',
+                    pathname === item.href ? 'text-accent' : 'text-muted-foreground'
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}

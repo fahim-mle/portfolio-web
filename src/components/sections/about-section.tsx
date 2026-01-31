@@ -35,39 +35,36 @@ export function AboutSection() {
     <section id="about" className="flex items-center min-h-[50vh] relative z-10 py-12 md:py-24" ref={containerRef}>
       <Container className="py-12 md:py-24">
         <div className="flex flex-col gap-12 max-w-2xl mx-auto">
-          <h1 className="animate-item text-4xl md:text-5xl font-serif font-medium tracking-tight text-[#D4AF37]">About</h1>
-
           <div className="space-y-8 text-lg md:text-xl text-muted-foreground leading-relaxed font-sans font-light">
             <p className="animate-item">
-              I exist at the intersection of <span className="text-foreground font-medium">curiosity and code</span>.
+              I’m a <span className="text-foreground font-medium">curious systems thinker</span> who prefers deep conversations over small talk.
             </p>
             <p className="animate-item">
-              My work is driven by a desire to understand systems—whether they are digital architectures, biological patterns, or social structures.
-              I build software not just to solve problems, but to ask better questions.
+              My work sits where <span className="text-foreground font-medium">engineering meets economics</span>. I care about how systems are designed, how data is secured, and the incentives that shape human behavior.
             </p>
             <p className="animate-item">
-              Current focus: Data visualization, distributed systems, and the quiet beauty of functional programming.
+              Whether it&apos;s building privacy-preserving ML infrastructure or understanding global markets, my goal is the same: use deep technical knowledge to build harmonious, resilient systems that make the world a slightly better place.
             </p>
           </div>
 
           <div className="pt-8 animate-item">
-            <h2 className="text-xl font-medium text-foreground mb-4">Core Principles</h2>
+            <h2 className="text-xl font-medium text-foreground mb-4">What Drives Me</h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <li className="flex items-center gap-2 text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
-                Simplicity over ease
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Data Privacy & Security
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37] text-accent" />
-                Data as truth
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Economic Incentives
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
-                Systems thinking
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Deep Conversations
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
-                Continuous iteration
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Real-world Harmony
               </li>
             </ul>
           </div>

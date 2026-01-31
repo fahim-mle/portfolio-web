@@ -77,13 +77,13 @@ export const HeroSection = () => {
         {/* Role Tags */}
         <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-6 font-sans text-xs md:text-sm tracking-[0.2em] text-gray-400">
           <span className="hero-tag flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-            <Database size={14} className="text-[#D4AF37]" /> DATA SCIENTIST
+            <Database size={14} className="text-accent" /> SYSTEMS & SECURITY
           </span>
           <span className="hero-tag flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-            <Code2 size={14} className="text-[#D4AF37]" /> FULL STACK DEV
+            <Code2 size={14} className="text-accent" /> DATA & ECONOMICS
           </span>
           <span className="hero-tag flex items-center gap-2 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-            <Terminal size={14} className="text-[#D4AF37]" /> DEVOPS
+            <Terminal size={14} className="text-accent" /> FULL STACK ENG
           </span>
         </div>
 
@@ -94,7 +94,7 @@ export const HeroSection = () => {
           </h1>
         </div>
 
-        <div className="w-full h-[1px] bg-gradient-to-r from-[#D4AF37] to-transparent my-4 line-separator origin-left" />
+        <div className="w-full h-[1px] bg-gradient-to-r from-accent to-transparent my-4 line-separator origin-left" />
 
         <div className="overflow-hidden">
           <h1 className="reveal-text text-6xl md:text-8xl lg:text-9xl font-serif font-bold leading-[1.1] text-center md:text-right text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
@@ -106,16 +106,28 @@ export const HeroSection = () => {
         <div className="mt-12 flex flex-col md:flex-row justify-between items-end gap-8" style={parallaxStyleDeep}>
           <div className="max-w-md text-gray-400 font-sans leading-relaxed text-sm md:text-base text-center md:text-left reveal-text">
             <p>
-              Master of Data Science (Professional) with a passion for bridging the gap between complex data, robust engineering, and seamless automation.
+              Full‑stack Engineer & Systems Thinker. I build secure, high‑performance systems and the analytics that help us understand the real world.
             </p>
           </div>
 
           {/* Socials */}
           <div className="flex gap-4 reveal-text">
-            <a href="#" className="p-3 border border-white/20 rounded-full hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-black transition-all duration-300 group">
+            <a
+              href="https://github.com/fahim-mle"
+              target="_blank"
+              rel="noreferrer"
+              className="p-3 border border-white/20 rounded-full hover:bg-accent hover:border-accent hover:text-accent-foreground transition-all duration-300 group"
+              aria-label="GitHub"
+            >
               <Github size={20} className="group-hover:scale-110 transition-transform" />
             </a>
-            <a href="#" className="p-3 border border-white/20 rounded-full hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-black transition-all duration-300 group">
+            <a
+              href="https://www.linkedin.com/in/fahim-forhad-z496/"
+              target="_blank"
+              rel="noreferrer"
+              className="p-3 border border-white/20 rounded-full hover:bg-accent hover:border-accent hover:text-accent-foreground transition-all duration-300 group"
+              aria-label="LinkedIn"
+            >
               <Linkedin size={20} className="group-hover:scale-110 transition-transform" />
             </a>
           </div>
