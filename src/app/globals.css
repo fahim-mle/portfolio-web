@@ -8,8 +8,14 @@
   /* Colors */
   --color-background: #0a0a0a;
   --color-foreground: #ffffff;
-
+  --color-accent: #00E5FF; /* Electric Blue signature accent */
   --color-gold: #D4AF37;
+}
+
+/* Typography refinements */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* Custom Utilities if needed */

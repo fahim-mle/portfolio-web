@@ -8,7 +8,7 @@ export default function Contact() {
     <Container className="py-24 max-w-md mx-auto">
       <div className="flex flex-col gap-6">
         <div className="text-center space-y-2">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">Get in Touch</h1>
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-accent">Get in Touch</h1>
           <p className="text-muted-foreground">
             I&apos;m currently looking for new opportunities, my inbox is always open.
             Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
