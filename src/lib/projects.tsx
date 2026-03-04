@@ -45,18 +45,18 @@ export const PROJECTS: Project[] = [
         ]
     },
     {
-        slug: 'portfolio-v2',
-        title: 'Portfolio Website (This Site)',
-        description: 'A clean Next.js portfolio with a blog — designed to evolve into deeper write-ups and case studies.',
-        fullDescription: 'My personal portfolio and blog, built to showcase my transition from full-stack engineer to data scientist. Focuses on clean typography and smooth interactions.',
-        tags: ['Next.js', 'TypeScript', 'UI', 'Vercel'],
-        href: '/',
-        github: 'https://github.com/fahim-mle/portfolio-web',
+        slug: 'career-scout-platform',
+        title: 'Career Scout Platform',
+        description: 'A focused platform to curate opportunities, track progress, and keep the search organized.',
+        fullDescription: 'A career scouting platform built to help manage opportunities, notes, and momentum throughout the job search.',
+        tags: ['TypeScript', 'React', 'UI', 'Productivity'],
+        href: 'https://github.com/fahim-mle/career-scout-platform',
+        github: 'https://github.com/fahim-mle/career-scout-platform',
         icon: React.createElement(MixerHorizontalIcon, { className: "h-5 w-5" }),
         highlights: [
-            '95+ Lighthouse performance score',
-            'System-aware dark mode implementation',
-            'Content-driven blog using MDX'
+            'Opportunity pipeline with clear status tracking',
+            'Notes and reminders to keep context close',
+            'Responsive UI focused on daily momentum'
         ]
     }
 ];
