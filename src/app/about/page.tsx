@@ -11,12 +11,10 @@ export default function About() {
           <div className="space-y-4 text-lg text-muted-foreground font-light leading-relaxed">
             <p>
               I am a Full-stack Software Engineer and Data Science professional with a passion for building secure,
-              high-performance systems. My work lives at the intersection of engineering, economics, and privacy.
+              high-performance systems. My work lives at the intersection of development, data literacy, and privacy.
             </p>
             <p>
-              With a Master&apos;s in Data Science from the University of Sydney, I focus on creating data-driven
-              applications that provide measurable impact. I bridge the gap between complex analytical models
-              and robust software engineering.
+              With a Master&apos;s in Data Science, I focus on creating data-driven applications that provide measurable impact. I bridge the gap between complex analytical models and robust software engineering.
             </p>
           </div>
           <div className="flex gap-4 pt-4">
