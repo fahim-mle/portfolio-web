@@ -1,5 +1,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
+import Link from 'next/link';
+
 interface ProjectCardProps {
   title: string;
   description: string;
@@ -9,9 +11,11 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ title, description, tags, href, icon }: ProjectCardProps) {
+  const isExternal = href.startsWith('http');
+
   return (
     <Card className="flex flex-col h-full bg-transparent border-white/10 hover:border-[#D4AF37]/50 transition-colors duration-300 group relative overflow-hidden">
-       {/* Circuit Border Effect - re-added for style */}
+      {/* Circuit Border Effect - re-added for style */}
       <span className="absolute inset-0 pointer-events-none rounded-lg border border-border transition-colors group-hover:border-accent/50" />
       <span className="absolute inset-[1px] -z-10 rounded-lg opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-r from-transparent via-accent/10 to-transparent blur-sm" />
 
@@ -32,14 +36,23 @@ export function ProjectCard({ title, description, tags, href, icon }: ProjectCar
         </div>
       </CardContent>
       <CardFooter className="pt-0 relative z-10">
-        <a
+        {isExternal ? (
+          <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] hover:text-white transition-colors flex items-center gap-2"
-        >
+          >
             View Project <span className="text-lg leading-none">&rarr;</span>
-        </a>
+          </a>
+        ) : (
+          <Link
+            href={href}
+            className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] hover:text-white transition-colors flex items-center gap-2"
+          >
+            View Project <span className="text-lg leading-none">&rarr;</span>
+          </Link>
+        )}
       </CardFooter>
     </Card>
   );

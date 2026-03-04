@@ -10,10 +10,11 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const NAV_ITEMS = [
-  { label: 'Home', href: '#' },
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export function Navbar() {
@@ -48,8 +49,8 @@ export function Navbar() {
     e.preventDefault();
     const targetId = href.replace('#', '');
     if (targetId === '') {
-       window.scrollTo({ top: 0, behavior: 'smooth' });
-       return;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
     const elem = document.getElementById(targetId);
     elem?.scrollIntoView({ behavior: 'smooth' });
