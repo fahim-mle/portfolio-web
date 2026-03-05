@@ -23,7 +23,24 @@ export function ProjectCard({ title, description, tags, href, icon }: ProjectCar
         <div className="mb-4 text-[#D4AF37] opacity-80 group-hover:opacity-100 transition-opacity">
           {icon}
         </div>
-        <CardTitle className="text-xl font-serif tracking-wide text-white group-hover:text-[#D4AF37] transition-colors">{title}</CardTitle>
+        {isExternal ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex"
+          >
+            <CardTitle className="text-xl font-serif tracking-wide text-white group-hover:text-[#D4AF37] transition-colors">
+              {title}
+            </CardTitle>
+          </a>
+        ) : (
+          <Link href={href} className="inline-flex">
+            <CardTitle className="text-xl font-serif tracking-wide text-white group-hover:text-[#D4AF37] transition-colors">
+              {title}
+            </CardTitle>
+          </Link>
+        )}
         <CardDescription className="text-sm font-sans text-gray-400 group-hover:text-gray-300 transition-colors">{description}</CardDescription>
       </CardHeader>
       <CardContent className="mt-auto relative z-10">

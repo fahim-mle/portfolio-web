@@ -5,11 +5,9 @@ import { Container } from '@/components/ui/container';
 import { ProjectCard } from '@/components/ui/project-card';
 import { getSortedPostsData } from '@/lib/blog';
 import Link from 'next/link';
-import { CodeIcon, MixerHorizontalIcon, RocketIcon } from '@radix-ui/react-icons';
-
 import { PROJECTS } from '@/lib/projects';
 
-const FEATURED_PROJECTS = PROJECTS.slice(0, 2);
+const FEATURED_PROJECTS = PROJECTS;
 
 export default function Home() {
   const latestPosts = getSortedPostsData().slice(0, 2);
