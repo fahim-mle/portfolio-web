@@ -47,16 +47,16 @@ export const PROJECTS: Project[] = [
     {
         slug: 'career-scout-platform',
         title: 'Career Scout Platform',
-        description: 'A focused platform to curate opportunities, track progress, and keep the search organized.',
-        fullDescription: 'A career scouting platform built to help manage opportunities, notes, and momentum throughout the job search.',
-        tags: ['TypeScript', 'React', 'UI', 'Productivity'],
+        description: 'A full-stack career tracker with a FastAPI backend, PostgreSQL, and React UI.',
+        fullDescription: 'A career scouting platform built to manage opportunities, notes, and momentum, backed by FastAPI and PostgreSQL with Prometheus and Grafana for monitoring.',
+        tags: ['TypeScript', 'React', 'FastAPI', 'PostgreSQL', 'Prometheus', 'Grafana'],
         href: 'https://github.com/fahim-mle/career-scout-platform',
         github: 'https://github.com/fahim-mle/career-scout-platform',
         icon: React.createElement(MixerHorizontalIcon, { className: "h-5 w-5" }),
         highlights: [
-            'Opportunity pipeline with clear status tracking',
-            'Notes and reminders to keep context close',
-            'Responsive UI focused on daily momentum'
+            'FastAPI backend with PostgreSQL for reliable data storage',
+            'Prometheus + Grafana monitoring for operational visibility',
+            'TypeScript + React frontend focused on daily momentum'
         ]
     }
 ];
