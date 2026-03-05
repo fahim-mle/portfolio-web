@@ -13,11 +13,9 @@ export default function Projects() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {PROJECTS.map((project) => (
-            <div key={project.title} className="animate-card h-full">
-              <ProjectCard {...project} />
-            </div>
+            <ProjectCard key={project.title} {...project} />
           ))}
         </div>
       </div>
