@@ -37,13 +37,15 @@ export function AboutSection() {
         <div className="flex flex-col gap-12 max-w-2xl mx-auto">
           <div className="space-y-8 text-lg md:text-xl text-muted-foreground leading-relaxed font-sans font-light">
             <p className="animate-item">
-              I’m a <span className="text-foreground font-medium">curious builder</span> who likes thinking in systems.
+              I started as a junior developer building ERP inventory systems, where precision mattered and mistakes were costly.
             </p>
             <p className="animate-item">
-              I look at products and businesses like <span className="text-foreground font-medium">living systems</span>: how information flows, where things break under load, what’s wasting time, and what’s worth automating.
+              That mindset carried into leading a frontend team on a large property platform, where performance work cut heavy UI
+              renders from seconds to near real-time.
             </p>
             <p className="animate-item">
-              I enjoy turning messy real-world problems into clean, reliable software — shipping improvements that are measurable, not just aesthetic.
+              Today, I combine full-stack engineering with data science, focusing on privacy, performance, and products that feel
+              genuinely helpful.
             </p>
           </div>
 
