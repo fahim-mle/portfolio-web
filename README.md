@@ -35,6 +35,31 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Updating the CV
+
+The Download CV button on the About page links to `public/docs/Fahim-Forhad-Resume.pdf`. To publish an updated resume, replace that file:
+
+```bash
+cp /path/to/new-resume.pdf portfolio-web/public/docs/Fahim_Forhad_Resume.pdf
+```
+
+The filename must stay the same — the button href is hardcoded to `/docs/Fahim_Forhad_Resume.pdf`.
+
+## Contact Form Setup
+
+The contact form sends email via [Resend](https://resend.com). To enable it:
+
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Sign up at [resend.com](https://resend.com), create an API key, and set:
+   - `RESEND_API_KEY` — your Resend API key (starts with `re_`)
+   - `CONTACT_TO_EMAIL` — the email address that should receive contact submissions (e.g. `you@example.com`)
+
+3. Without these variables, the `/api/contact` endpoint returns HTTP 501 and the form will show an error. No email is sent.
+
 ## Docker
 
 Host the application locally using Docker.
