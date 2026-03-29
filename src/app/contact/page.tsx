@@ -12,6 +12,7 @@ export default function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [website, setWebsite] = useState('');
 
   return (
     <Container className="py-24 max-w-md mx-auto">
@@ -28,10 +29,12 @@ export default function Contact() {
           className="w-full space-y-4"
           onSubmit={async (e) => {
             e.preventDefault();
-            await submit({ name, email, message });
-            setName('');
-            setEmail('');
-            setMessage('');
+            const ok = await submit({ name, email, message, website });
+            if (ok) {
+              setName('');
+              setEmail('');
+              setMessage('');
+            }
           }}
         >
           <Input
@@ -53,6 +56,17 @@ export default function Contact() {
             onChange={(e) => setMessage(e.target.value)}
             required
             className="min-h-[150px]"
+          />
+
+          {/* Honeypot — hidden from users, visible to bots */}
+          <input
+            type="text"
+            name="website"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            tabIndex={-1}
+            aria-hidden="true"
+            style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}
           />
 
           {status === 'sent' && (

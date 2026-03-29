@@ -11,14 +11,14 @@ export function useContactForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [error, setError] = useState<string | null>(null);
 
-  async function submit(payload: { name: string; email: string; message: string }) {
+  async function submit(payload: { name: string; email: string; message: string; website?: string }): Promise<boolean> {
     setStatus('sending');
     setError(null);
 
     const res = await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...payload, website: '' }),
+      body: JSON.stringify(payload),
     });
 
     const data = (await res.json().catch(() => null)) as ContactResponse | null;
@@ -26,10 +26,11 @@ export function useContactForm() {
     if (!res.ok || !data || data.ok !== true) {
       setStatus('error');
       setError((data && 'error' in data && data.error) ? data.error : 'Failed to send');
-      return;
+      return false;
     }
 
     setStatus('sent');
+    return true;
   }
 
   return { status, error, submit, setStatus };
