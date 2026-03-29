@@ -28,7 +28,7 @@ export default function About() {
           <div className="flex gap-4 pt-4">
             <a
               className={`${buttonVariants({})} gap-2`}
-              href="/docs/Fahim-Forhad-Resume.pdf"
+              href="/docs/Fahim_Forhad_Resume.pdf"
               download
             >
               <DownloadIcon className="h-4 w-4" />
